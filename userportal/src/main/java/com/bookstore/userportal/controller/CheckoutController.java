@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
 import java.security.Principal;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -53,6 +54,9 @@ public class CheckoutController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private SalesService salesService;
 
     @RequestMapping("/checkout")
     public String checkout(@RequestParam("id") Long cartId,
@@ -187,6 +191,10 @@ public class CheckoutController {
         }
 
         model.addAttribute("estimatedDeliveryDate", estimatedDeliveryDate);
+
+        for (CartItem cartItem: cartItemList) {
+            salesService.insertOrUpdateSalesBook(cartItem.getBook().getId(), cartItem.getQty(), Date.from(Instant.now()));
+        }
 
         return "orderSubmittedPage";
     }
