@@ -30,9 +30,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserPaymentRepository userPaymentRepository;
-	
-	@Autowired
-	private UserShippingRepository userShippingRepository;
+
 	
 	@Autowired
 	private PasswordResetTokenRepository passwordResetTokenRepository;
@@ -80,8 +78,7 @@ public class UserServiceImpl implements UserService {
 			ShoppingCart shoppingCart = new ShoppingCart();
 			shoppingCart.setUser(user);
 			user.setShoppingCart(shoppingCart);
-			
-			user.setUserShippingList(new ArrayList<UserShipping>());
+
 			user.setUserPaymentList(new ArrayList<UserPayment>());
 			
 			localUser = userRepository.save(user);
@@ -94,24 +91,7 @@ public class UserServiceImpl implements UserService {
 	public User save(User user) {
 		return userRepository.save(user);
 	}
-	
-	@Override
-	public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
-		userPayment.setUser(user);
-		userPayment.setUserBilling(userBilling);
-		userPayment.setDefaultPayment(true);
-		userBilling.setUserPayment(userPayment);
-		user.getUserPaymentList().add(userPayment);
-		save(user);
-	}
-	
-	@Override
-	public void updateUserShipping(UserShipping userShipping, User user){
-		userShipping.setUser(user);
-		userShipping.setUserShippingDefault(true);
-		user.getUserShippingList().add(userShipping);
-		save(user);
-	}
+
 	
 	@Override
 	public void setUserDefaultPayment(Long userPaymentId, User user) {
@@ -128,19 +108,6 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-	@Override
-	public void setUserDefaultShipping(Long userShippingId, User user) {
-		List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
-		
-		for (UserShipping userShipping : userShippingList) {
-			if(userShipping.getId() == userShippingId) {
-				userShipping.setUserShippingDefault(true);
-				userShippingRepository.save(userShipping);
-			} else {
-				userShipping.setUserShippingDefault(false);
-				userShippingRepository.save(userShipping);
-			}
-		}
-	}
+
 
 }

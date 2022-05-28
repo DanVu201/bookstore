@@ -23,12 +23,12 @@ public class OrderServiceImpl implements OrderService {
 	
 	public synchronized Order createOrder(ShoppingCart shoppingCart,
 										  ShippingAddress shippingAddress,
-										  BillingAddress billingAddress,
+										  //BillingAddress billingAddress,
 										  Payment payment,
 										  String shippingMethod,
 										  User user) {
 		Order order = new Order();
-		order.setBillingAddress(billingAddress);
+		//order.setBillingAddress(billingAddress);
 		order.setOrderStatus("created");
 		order.setPayment(payment);
 		order.setShippingAddress(shippingAddress);
@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 		order.setOrderDate(Calendar.getInstance().getTime());
 		order.setOrderTotal(shoppingCart.getGrandTotal());
 		shippingAddress.setOrder(order);
-		billingAddress.setOrder(order);
+		//billingAddress.setOrder(order);
 		payment.setOrder(order);
 		order.setUser(user);
 		order = orderRepository.save(order);

@@ -1,9 +1,7 @@
 package com.bookstore.userportal.service;
 
 import com.bookstore.userportal.domain.User;
-import com.bookstore.userportal.domain.UserBilling;
 import com.bookstore.userportal.domain.UserPayment;
-import com.bookstore.userportal.domain.UserShipping;
 import com.bookstore.userportal.domain.security.PasswordResetToken;
 import com.bookstore.userportal.domain.security.UserRole;
 
@@ -23,12 +21,9 @@ public interface UserService {
 	User createUser(User user, Set<UserRole> userRoles) throws Exception;
 	
 	User save(User user);
-	
-	void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
-	
-	void updateUserShipping(UserShipping userShipping, User user);
+
 	
 	void setUserDefaultPayment(Long userPaymentId, User user);
 	
-	void setUserDefaultShipping(Long userShippingId, User user);
+
 }

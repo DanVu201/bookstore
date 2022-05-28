@@ -22,9 +22,6 @@ public class Payment {
 	
 	@OneToOne
 	private Order order;
-	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "userPayment")
-	private UserBilling userBilling;
 
 	public Long getId() {
 		return id;
@@ -98,13 +95,7 @@ public class Payment {
 		this.order = order;
 	}
 
-	public UserBilling getUserBilling() {
-		return userBilling;
-	}
 
-	public void setUserBilling(UserBilling userBilling) {
-		this.userBilling = userBilling;
-	}
 	
 	
 }

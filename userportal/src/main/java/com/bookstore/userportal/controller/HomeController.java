@@ -44,9 +44,7 @@ public class HomeController {
 	
 	@Autowired
 	private UserPaymentService userPaymentService;
-	
-	@Autowired
-	private UserShippingService userShippingService;
+
 	
 	@Autowired
 	private CartItemService cartItemService;
@@ -149,11 +147,11 @@ public class HomeController {
 		User user = userService.findByUsername(principal.getName());
 		model.addAttribute("user", user);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
 		
-		UserShipping userShipping = new UserShipping();
-		model.addAttribute("userShipping", userShipping);
+		//UserShipping userShipping = new UserShipping();
+		//model.addAttribute("userShipping", userShipping);
 		
 		model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("listOfShippingAddresses", true);
@@ -173,7 +171,7 @@ public class HomeController {
 		User user = userService.findByUsername(principal.getName());
 		model.addAttribute("user", user);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
 		
 		model.addAttribute("listOfCreditCards", true);
@@ -190,7 +188,7 @@ public class HomeController {
 		User user = userService.findByUsername(principal.getName());
 		model.addAttribute("user", user);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
 		
 		model.addAttribute("listOfCreditCards", true);
@@ -211,18 +209,18 @@ public class HomeController {
 		model.addAttribute("classActiveBilling", true);
 		model.addAttribute("listOfShippingAddresses", true);
 		
-		UserBilling userBilling = new UserBilling();
+		//UserBilling userBilling = new UserBilling();
 		UserPayment userPayment = new UserPayment();
 		
 		
-		model.addAttribute("userBilling", userBilling);
+		//odel.addAttribute("userBilling", userBilling);
 		model.addAttribute("userPayment", userPayment);
 		
 		List<String> stateList = USConstants.listOfUSStatesCode;
 		Collections.sort(stateList);
 		model.addAttribute("stateList", stateList);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
 		
 		return "myProfile";
@@ -239,15 +237,15 @@ public class HomeController {
 		model.addAttribute("classActiveShipping", true);
 		model.addAttribute("listOfCreditCards", true);
 		
-		UserShipping userShipping = new UserShipping();
-		
-		model.addAttribute("userShipping", userShipping);
-		
+//		UserShipping userShipping = new UserShipping();
+//
+//		model.addAttribute("userShipping", userShipping);
+//
 		List<String> stateList = USConstants.listOfUSStatesCode;
 		Collections.sort(stateList);
 		model.addAttribute("stateList", stateList);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
 		
 		return "myProfile";
@@ -256,15 +254,15 @@ public class HomeController {
 	@RequestMapping(value="/addNewCreditCard", method=RequestMethod.POST)
 	public String addNewCreditCard(
 			@ModelAttribute("userPayment") UserPayment userPayment,
-			@ModelAttribute("userBilling") UserBilling userBilling,
+			//@ModelAttribute("userBilling") UserBilling userBilling,
 			Principal principal, Model model
 			){
 		User user = userService.findByUsername(principal.getName());
-		userService.updateUserBilling(userBilling, userPayment, user);
+		//userService.updateUserBilling(userBilling, userPayment, user);
 		
 		model.addAttribute("user", user);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("classActiveBilling", true);
 		model.addAttribute("listOfShippingAddresses", true);
@@ -272,25 +270,7 @@ public class HomeController {
 		
 		return "myProfile";
 	}
-	
-	@RequestMapping(value="/addNewShippingAddress", method=RequestMethod.POST)
-	public String addNewShippingAddressPost(
-			@ModelAttribute("userShipping") UserShipping userShipping,
-			Principal principal, Model model
-			){
-		User user = userService.findByUsername(principal.getName());
-		userService.updateUserShipping(userShipping, user);
-		
-		model.addAttribute("user", user);
-		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
-		model.addAttribute("listOfShippingAddresses", true);
-		model.addAttribute("classActiveShipping", true);
-		model.addAttribute("listOfCreditCards", true);
-		model.addAttribute("orderList", user.getOrderList());
-		
-		return "myProfile";
-	}
+
 	
 	
 	@RequestMapping("/updateCreditCard")
@@ -304,9 +284,9 @@ public class HomeController {
 			return "badRequestPage";
 		} else {
 			model.addAttribute("user", user);
-			UserBilling userBilling = userPayment.getUserBilling();
+			//UserBilling userBilling = userPayment.getUserBilling();
 			model.addAttribute("userPayment", userPayment);
-			model.addAttribute("userBilling", userBilling);
+			//model.addAttribute("userBilling", userBilling);
 			
 			List<String> stateList = USConstants.listOfUSStatesCode;
 			Collections.sort(stateList);
@@ -317,37 +297,7 @@ public class HomeController {
 			model.addAttribute("listOfShippingAddresses", true);
 			
 			model.addAttribute("userPaymentList", user.getUserPaymentList());
-			model.addAttribute("userShippingList", user.getUserShippingList());
-			model.addAttribute("orderList", user.getOrderList());
-			
-			return "myProfile";
-		}
-	}
-	
-	@RequestMapping("/updateUserShipping")
-	public String updateUserShipping(
-			@ModelAttribute("id") Long shippingAddressId, Principal principal, Model model
-			) {
-		User user = userService.findByUsername(principal.getName());
-		UserShipping userShipping = userShippingService.findById(shippingAddressId);
-		
-		if(user.getId() != userShipping.getUser().getId()) {
-			return "badRequestPage";
-		} else {
-			model.addAttribute("user", user);
-			
-			model.addAttribute("userShipping", userShipping);
-			
-			List<String> stateList = USConstants.listOfUSStatesCode;
-			Collections.sort(stateList);
-			model.addAttribute("stateList", stateList);
-			
-			model.addAttribute("addNewShippingAddress", true);
-			model.addAttribute("classActiveShipping", true);
-			model.addAttribute("listOfCreditCards", true);
-			
-			model.addAttribute("userPaymentList", user.getUserPaymentList());
-			model.addAttribute("userShippingList", user.getUserShippingList());
+			//model.addAttribute("userShippingList", user.getUserShippingList());
 			model.addAttribute("orderList", user.getOrderList());
 			
 			return "myProfile";
@@ -367,7 +317,7 @@ public class HomeController {
 		model.addAttribute("listOfShippingAddresses", true);
 		
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
 		
 		return "myProfile";
@@ -378,7 +328,6 @@ public class HomeController {
 			@ModelAttribute("defaultShippingAddressId") Long defaultShippingId, Principal principal, Model model
 			) {
 		User user = userService.findByUsername(principal.getName());
-		userService.setUserDefaultShipping(defaultShippingId, user);
 		
 		model.addAttribute("user", user);
 		model.addAttribute("listOfCreditCards", true);
@@ -386,7 +335,7 @@ public class HomeController {
 		model.addAttribute("listOfShippingAddresses", true);
 		
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
+		//model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
 		
 		return "myProfile";
@@ -410,37 +359,14 @@ public class HomeController {
 			model.addAttribute("listOfShippingAddresses", true);
 			
 			model.addAttribute("userPaymentList", user.getUserPaymentList());
-			model.addAttribute("userShippingList", user.getUserShippingList());
+			//model.addAttribute("userShippingList", user.getUserShippingList());
 			model.addAttribute("orderList", user.getOrderList());
 			
 			return "myProfile";
 		}
 	}
 	
-	@RequestMapping("/removeUserShipping")
-	public String removeUserShipping(
-			@ModelAttribute("id") Long userShippingId, Principal principal, Model model
-			){
-		User user = userService.findByUsername(principal.getName());
-		UserShipping userShipping = userShippingService.findById(userShippingId);
-		
-		if(user.getId() != userShipping.getUser().getId()) {
-			return "badRequestPage";
-		} else {
-			model.addAttribute("user", user);
-			
-			userShippingService.deleteById(userShippingId);
-			
-			model.addAttribute("listOfShippingAddresses", true);
-			model.addAttribute("classActiveShipping", true);
-			
-			model.addAttribute("userPaymentList", user.getUserPaymentList());
-			model.addAttribute("userShippingList", user.getUserShippingList());
-			model.addAttribute("orderList", user.getOrderList());
-			
-			return "myProfile";
-		}
-	}
+
 	
 	@RequestMapping(value="/newUser", method = RequestMethod.POST)
 	public String newUserPost(
@@ -602,11 +528,11 @@ public class HomeController {
 			model.addAttribute("order", order);
 			
 			model.addAttribute("userPaymentList", user.getUserPaymentList());
-			model.addAttribute("userShippingList", user.getUserShippingList());
+			//model.addAttribute("userShippingList", user.getUserShippingList());
 			model.addAttribute("orderList", user.getOrderList());
 			
-			UserShipping userShipping = new UserShipping();
-			model.addAttribute("userShipping", userShipping);
+//			UserShipping userShipping = new UserShipping();
+//			model.addAttribute("userShipping", userShipping);
 			
 			List<String> stateList = USConstants.listOfUSStatesCode;
 			Collections.sort(stateList);
