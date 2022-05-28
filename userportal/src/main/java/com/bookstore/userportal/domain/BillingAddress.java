@@ -15,9 +15,11 @@ public class BillingAddress {
 	private String BillingAddressStreet1;
 	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressStreet2;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressCity;
 	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressState;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressCountry;
 	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressZipcode;
