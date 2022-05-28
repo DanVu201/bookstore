@@ -1,6 +1,7 @@
 package com.bookstore.userportal.controller;
 
 import java.security.Principal;
+import java.util.Base64;
 import java.util.List;
 
 import com.bookstore.userportal.domain.Book;
@@ -40,7 +41,10 @@ public class ShoppingCartController {
 		ShoppingCart shoppingCart = user.getShoppingCart();
 		
 		List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
-		
+		for (CartItem cartItem: shoppingCart.getCartItemList()) {
+			Book book = cartItem.getBook();
+			cartItem.getBook().setImageString(Base64.getEncoder().encodeToString(book.getImageShow()));
+		}
 		shoppingCartService.updateShoppingCart(shoppingCart);
 		
 		model.addAttribute("cartItemList", cartItemList);
