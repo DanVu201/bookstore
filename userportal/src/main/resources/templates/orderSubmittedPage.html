@@ -44,7 +44,7 @@
 
 						<a th:href="@{/bookDetail(id=${cartItem.book.id})}"> <img
 							class="img-responsive shelf-book"
-							th:src="#{adminPath}+@{/image/book/}+${cartItem.book.id}+'.png'"
+							th:src="@{'data:image/jpeg;charset=utf-8;base64,' + ${cartItem.book.imageString}}"
 							style="width: 70px;" />
 						</a>
 					</div>
@@ -57,7 +57,7 @@
 
 					<div class="col-xs-2">
 						<h5 style="color: #db3208; font-size: large;">
-							$<span th:text="${cartItem.book.ourPrice}"
+							$<span th:text="${cartItem.book.price}"
 								th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
 						</h5>
 					</div>

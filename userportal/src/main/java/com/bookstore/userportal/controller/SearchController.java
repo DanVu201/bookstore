@@ -1,6 +1,7 @@
 package com.bookstore.userportal.controller;
 
 import java.security.Principal;
+import java.util.Base64;
 import java.util.List;
 
 import com.bookstore.userportal.domain.Book;
@@ -39,6 +40,15 @@ public class SearchController {
 		model.addAttribute(classActiveCategory, true);
 		
 		List<Book> bookList = bookService.findByCategory(category);
+		for (Book book : bookList) {
+			String image;
+			try {
+				image = Base64.getEncoder().encodeToString(book.getImageShow());
+			} catch (Exception ignored) {
+				image = "";
+			}
+			book.setImageString(image);
+		}
 		
 		if (bookList.isEmpty()) {
 			model.addAttribute("emptyList", true);
@@ -62,6 +72,15 @@ public class SearchController {
 		}
 		
 		List<Book> bookList = bookService.blurrySearch(keyword);
+		for (Book book : bookList) {
+			String image;
+			try {
+				image = Base64.getEncoder().encodeToString(book.getImageShow());
+			} catch (Exception ignored) {
+				image = "";
+			}
+			book.setImageString(image);
+		}
 		
 		if (bookList.isEmpty()) {
 			model.addAttribute("emptyList", true);
