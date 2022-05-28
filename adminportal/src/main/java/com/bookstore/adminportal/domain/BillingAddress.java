@@ -9,12 +9,17 @@ public class BillingAddress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressName;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressStreet1;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressStreet2;
 	private String BillingAddressCity;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressState;
 	private String BillingAddressCountry;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String BillingAddressZipcode;
 	
 	@OneToOne

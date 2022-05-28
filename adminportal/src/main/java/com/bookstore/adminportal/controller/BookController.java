@@ -65,9 +65,8 @@ public class BookController {
         } catch (Exception ignored) {
             image = "";
         }
+        book.setImageString(image);
         model.addAttribute("book", book);
-        model.addAttribute("image", image);
-
         return "bookInfo";
     }
 

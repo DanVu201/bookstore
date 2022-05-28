@@ -7,12 +7,19 @@ public class ShippingAddress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String ShippingAddressName;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String ShippingAddressStreet1;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String ShippingAddressStreet2;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String ShippingAddressCity;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String ShippingAddressState;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String ShippingAddressCountry;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String ShippingAddressZipcode;
 	
 	@OneToOne

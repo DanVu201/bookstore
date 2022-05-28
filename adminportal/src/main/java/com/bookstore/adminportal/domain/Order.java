@@ -14,7 +14,9 @@ public class Order {
 	private Long id;
 	private Date orderDate;
 	private Date shippingDate;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String shippingMethod;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String orderStatus;
 	private BigDecimal orderTotal;
 	

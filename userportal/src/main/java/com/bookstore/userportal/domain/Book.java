@@ -29,7 +29,7 @@ public class Book {
 	private double price;
 	private boolean active=true;
 	
-	@Column(columnDefinition="text")
+	@Column(columnDefinition="nvarchar(255)")
 	private String description;
 	private int inStockNumber;
 
@@ -55,11 +55,21 @@ public class Book {
 
 	@Transient
 	private MultipartFile bookImage;
+
+	@Transient
+	private String imageString;
 	
 	@OneToMany(mappedBy = "book")
 	@JsonIgnore
 	private List<BookToCartItem> bookToCartItemList;
-	
+
+	public String getImageString() {
+		return imageString;
+	}
+
+	public void setImageString(String imageString) {
+		this.imageString = imageString;
+	}
 
 	public Long getId() {
 		return id;
