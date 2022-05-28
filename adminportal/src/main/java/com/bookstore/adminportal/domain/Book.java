@@ -12,18 +12,24 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String title;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String author;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String publisher;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String publicationDate;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String language;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String category;
 	private int numberOfPages;
 	private double shippingWeight;
 	private double price;
 	private boolean active=true;
 	
-	@Column(columnDefinition="text")
+	@Column(columnDefinition="nvarchar(255)")
 	private String description;
 	private int inStockNumber;
 
@@ -49,11 +55,21 @@ public class Book {
 
 	@Transient
 	private MultipartFile bookImage;
+
+	@Transient
+	private String imageString;
 	
 	@OneToMany(mappedBy = "book")
 	@JsonIgnore
 	private List<BookToCartItem> bookToCartItemList;
-	
+
+	public String getImageString() {
+		return imageString;
+	}
+
+	public void setImageString(String imageString) {
+		this.imageString = imageString;
+	}
 
 	public Long getId() {
 		return id;

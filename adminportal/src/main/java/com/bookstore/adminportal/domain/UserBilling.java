@@ -8,12 +8,19 @@ public class UserBilling {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userBillingName;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userBillingStreet1;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userBillingStreet2;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userBillingCity;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userBillingState;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userBillingCountry;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userBillingZipcode;
 	
 	@OneToOne(cascade=CascadeType.ALL)

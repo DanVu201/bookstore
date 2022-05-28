@@ -6,7 +6,7 @@
 	<div th:replace="common/header :: navbar" />
 
 	<div class="container">
-		<div class="row" style="margin-bottom: -100px;">
+		<div class="row" style="margin-bottom: -100px; display: none">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
 					<h2 class="section-headline">
@@ -21,7 +21,7 @@
 		</div>
 		<hr style="position: absolute; width:85%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
 		<img class="img-responsive" src="/image/wood.png"
-			style="margin-top: -75px;" />
+			style="margin-top: -75px; display: none" />
 
 		<div class="row" style="margin-top: 10px;">
 			<div class="col-xs-12">
@@ -104,7 +104,7 @@
 
 					<div class="row">
 						<hr />
-						<h4 class="col-xs-12 text-right">
+						<h4 class="col-xs-12 text-right" style="padding-right: 50px;">
 							<strong style="font-size: large;">Total Price (<span
 								th:text="${#lists.size(cartItemList)}"></span> items):
 							</strong> <span style="color: #db3208; font-szie: large;">$<span

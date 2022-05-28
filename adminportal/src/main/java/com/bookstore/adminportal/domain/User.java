@@ -19,9 +19,13 @@ public class User implements UserDetails{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id", nullable = false, updatable = false)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String username;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String password;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String firstName;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String lastName;
 	
 	@Column(name="email", nullable = false, updatable = false)
