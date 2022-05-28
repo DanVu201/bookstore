@@ -4,6 +4,7 @@ import com.bookstore.userportal.domain.*;
 import com.bookstore.userportal.domain.security.PasswordResetToken;
 import com.bookstore.userportal.domain.security.Role;
 import com.bookstore.userportal.domain.security.UserRole;
+import com.bookstore.userportal.dto.SalesBookDTO;
 import com.bookstore.userportal.service.*;
 import com.bookstore.userportal.service.impl.UserSecurityService;
 import com.bookstore.userportal.utility.MailConstructor;
@@ -17,10 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +51,9 @@ public class HomeController {
 	
 	@Autowired
 	private OrderService orderService;
+
+	@Autowired
+	private SalesService salesService;
 
 	@RequestMapping("/")
 	public String index() {
@@ -620,6 +621,11 @@ public class HomeController {
 			return "myProfile";
 		}
 	}
-	
+
+	@GetMapping("/sales")
+	List<SalesBookDTO> listSalesBook(@RequestParam("month") int month,
+									 @RequestParam("year") int year) {
+		return salesService.listSalesBook(month, year);
+	}
 
 }
