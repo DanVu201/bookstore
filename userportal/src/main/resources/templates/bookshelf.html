@@ -6,7 +6,7 @@
 	<div th:replace="common/header :: navbar" />
 
 	<div class="container">
-		<div class="row" style="margin-bottom: -100px;">
+		<div class="row" style="margin-bottom: -100px; display: none">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
 					<h2 class="section-headline">
@@ -22,11 +22,11 @@
 		<hr
 			style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
 		<img class="img-responsive" src="/image/wood.png"
-			style="margin-top: -75px;" />
+			style="margin-top: -75px; display: none" />
 
 		<div class="row" style="margin-top: 60px;">
 
-			<div class="row" style="margin-top: 60px;">
+			<div class="row" style="margin-top: 10px;">
 				<div class="col-xs-3">
 					<h3>
 						<label for="category">Category</label>
@@ -52,7 +52,7 @@
 					</div>
 				</div>
 
-				<div class="col-xs-9">
+				<div class="col-xs-9" style="padding-right: 150px;padding-left: 100px;">
 					<div th:if="${emptyList}">
 						<h5 style="font-style: italic;">Oops, no result is found. Try
 							something else or try again later.</h5>
@@ -72,23 +72,19 @@
 											<div class="col-xs-3">
 												<a th:href="@{/bookDetail?id=}+${book.id}"><img
 													class="img-responsive shelf-book"
-													th:src="#{adminPath}+@{/image/book/}+${book.id}+'.png'" /></a>
+													th:src="@{'data:image/jpeg;charset=utf-8;base64,' + ${book.imageString}}" /></a>
 											</div>
 											<div class="col-xs-9">
 												<a th:href="@{/bookDetail?id=}+${book.id}"><h4
 														th:text="${book.title}"></h4></a> <span
 													th:text="${book.publicationDate}"></span>
 												<p th:text="${book.author}"></p>
-												<a th:href="@{/bookDetail?id=}+${book.id}"><span
-													th:text="${#strings.capitalize(book.format)}"></span></a> <span
+												<span
 													th:text="${book.numberOfPages}"><span> pages</span></span><br />
 
 												<a th:href="@{/bookDetail?id=}+${book.id}"><span
 													style="font-size: x-large; color: #db3208;">$<span
-														th:text="${#numbers.formatDecimal(book.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span></a>
-
-												<span style="text-decoration: line-through;">$<span
-													th:text="${#numbers.formatDecimal(book.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+														th:text="${#numbers.formatDecimal(book.price, 0 , 'COMMA', 2, 'POINT')}"></span></span></a>
 
 												<p th:utext="${#strings.abbreviate(book.description,1000)}"></p>
 											</div>

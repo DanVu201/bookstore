@@ -7,12 +7,19 @@ public class UserShipping {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userShippingName;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userShippingStreet1;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userShippingStreet2;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userShippingCity;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userShippingState;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userShippingCountry;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String userShippingZipcode;
 	private boolean userShippingDefault;
 	

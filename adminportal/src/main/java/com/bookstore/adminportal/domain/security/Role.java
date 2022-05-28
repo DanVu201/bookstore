@@ -1,7 +1,5 @@
 package com.bookstore.adminportal.domain.security;
 
-import com.bookstore.adminportal.domain.security.UserRole;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

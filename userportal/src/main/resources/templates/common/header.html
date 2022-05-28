@@ -28,13 +28,13 @@
 <body>
 	<div th:fragment="navbar">
 		<div class="page-top"
-			style="width: 100%; height: 10px; background-color: #008080;"></div>
+			style="width: 100%; height: 10px; background-color: #737270;"></div>
 		<!-- Static navbar -->
 		<nav class="navbar navbar-default navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" th:href="@{/}"><span
-						class="glyphicon glyphicon-home"></span> E-Books</a>
+						class="glyphicon glyphicon-home"></span> Nhóm 1</a>
 				</div>
 				<div id="navbar">
 					<ul class="nav navbar-nav navbar-left">
@@ -66,11 +66,11 @@
 							</ul></li>
 						<form class="navbar-form" th:action="@{/searchBook}" method="post">
 							<div class="form-group">
-								<input type="text" name="keyword" class="form-control"
+								<input id="book_search" type="text" name="keyword" class="form-control"
 									placeholder="Book title" />
 							</div>
 							
-							<button type="submit" class="btn btn-info btn-sm"><span
+							<button id="search_submit" type="submit" class="btn btn-info btn-sm"><span
 								class="glyphicon glyphicon-search"></span> Search</button>
 						
 						</form>
@@ -100,23 +100,23 @@
 				<div class="col-xs-3 footerleft">
 					<div class="logofooter">
 						<a th:href="@{/}"><img class="img-responsive"
-							src="/image/logo.png" style="width: 200px;" /></a>
+							src="/image/logo.jpg" style="width: 200px;" /></a>
 					</div>
-					<p>
-						E-book. <br />The World's best books is here.
-					</p>
+<!--					<p>-->
+<!--						E-book. <br />The World's best books is here.-->
+<!--					</p>-->
 				</div>
 				<div class="col-xs-3 paddingtop-bottom">
 					<h6 class="heading7">CONTACT</h6>
 					<ul class="post">
 						<p>
-							<i class="fa fa-map-pin"></i> Mirpur - 12<br /> Dhaka, 
+							<i class="fa fa-map-pin"></i> Nhóm 1 - 64CS1<br />
 						</p>
 						<p>
-							<i class="fa fa-phone"></i> Phone (BD) : +8801712-345678
+							<i class="fa fa-phone"></i> Phone (BD) : +113
 						</p>
 						<p>
-							<i class="fa fa-envelope"></i> E-mail : foysal.ecommerce.com
+							<i class="fa fa-envelope"></i> E-mail : nhom1provjp@nuce.edu.vn
 						</p>
 					</ul>
 				</div>
@@ -138,19 +138,19 @@
 			</div>
 		</footer>
 
-		<div class="copyright">
-			<div class="col-md-6">
-				<p>© 2020 - All Rights Reserved</p>
-			</div>
-			<div class="col-md-6">
-				<ul class="bottom_ul">
-					<li><a th:href="badRequestPage.html">About us</a></li>
-					<li><a href="#">Foysal</a></li>
-					<li><a href="#">Mahmud</a></li>
-					
-				</ul>
-			</div>
-		</div>
+<!--		<div class="copyright">-->
+<!--			<div class="col-md-6">-->
+<!--				<p>© 2020 - All Rights Reserved</p>-->
+<!--			</div>-->
+<!--			<div class="col-md-6">-->
+<!--				<ul class="bottom_ul">-->
+<!--					<li><a th:href="badRequestPage.html">About us</a></li>-->
+<!--					<li><a href="#">Foysal</a></li>-->
+<!--					<li><a href="#">Mahmud</a></li>-->
+<!--					-->
+<!--				</ul>-->
+<!--			</div>-->
+<!--		</div>-->
 	</div>
 
 

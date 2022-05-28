@@ -6,7 +6,7 @@
 	<div th:replace="common/header :: navbar" />
 
 	<div class="container">
-		<div class="row" style="margin-bottom: -100px;">
+		<div class="row" style="margin-bottom: -100px; display: none">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
 					<h2 class="section-headline">
@@ -21,7 +21,7 @@
 		</div>
 		<hr style="position: absolute; width:85%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
 		<img class="img-responsive" src="/image/wood.png"
-			style="margin-top: -75px;" />
+			style="margin-top: -75px; display: none" />
 
 		<div class="row" style="margin-top: 10px;">
 			<div class="col-xs-12">
@@ -64,8 +64,7 @@
 								<a th:href="@{bookDetail(id=${cartItem.book.id})}"> <img
 									style="width:70px;"
 									class="img-responsive shelf-book center-block"
-									th:src="#{adminPath}+@{/image/book/}+
-								${cartItem.book.id}+'.png'" />
+									th:src="@{'data:image/jpeg;charset=utf-8;base64,' + ${cartItem.book.imageString}}" />
 								</a>
 							</div>
 							<div class="col-xs-6">
@@ -87,7 +86,7 @@
 
 							<div class="col-xs-2">
 								<h5 style="color: #db3208; font-size: large;">
-									$<span th:text="${cartItem.book.ourPrice}"
+									$<span th:text="${cartItem.book.price}"
 										th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
 								</h5>
 							</div>
@@ -104,7 +103,7 @@
 
 					<div class="row">
 						<hr />
-						<h4 class="col-xs-12 text-right">
+						<h4 class="col-xs-12 text-right" style="padding-right: 50px;">
 							<strong style="font-size: large;">Total Price (<span
 								th:text="${#lists.size(cartItemList)}"></span> items):
 							</strong> <span style="color: #db3208; font-szie: large;">$<span
