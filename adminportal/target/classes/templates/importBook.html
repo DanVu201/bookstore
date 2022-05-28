@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+<div th:replace="common/header :: navbar" />
+
+<div class="container">
+  <div class="row">
+    <form class="form-horizontal" th:action="@{/book/import}" method="post"
+          enctype="multipart/form-data">
+      <fieldset>
+        <legend class="center-block">
+          Import Book Information<span style="font-size: small"> * is a
+							required field</span>
+        </legend>
+
+        <input hidden="hidden" name="id" th:value="${book.id}" />
+
+        <!-- quantity -->
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="instockNumber">Number book</label>
+
+          <div class="col-md-8">
+            <input type="number" name="inStockNumber" class="form-control"
+                   id="instockNumber"
+                   placeholder="InStockNumber" /> <span class="help-block">Number
+								of book import the store</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <button type="submit" class="btn btn-success">Import Book</button>
+            <a class="btn btn-danger" th:href="@{/book/bookInfo(id=${book.id})}">Cancel</a>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>
