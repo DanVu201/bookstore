@@ -101,7 +101,7 @@ tr:nth-child(even) {
 		<tbody>
 			<tr th:each="cartItem : ${cartItemList}">
 				<td><span data-th-text="${cartItem.book.title}"></span></td>
-				<td class="text-center" data-th-text="${cartItem.book.ourPrice}"></td>
+				<td class="text-center" data-th-text="${cartItem.book.price}"></td>
 				<td class="text-center" data-th-text="${cartItem.qty}"></td>
 				<td class="text-right" data-th-text="${cartItem.subtotal}"></td>
 			</tr>
