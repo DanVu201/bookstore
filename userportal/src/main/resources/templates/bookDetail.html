@@ -29,7 +29,7 @@
     	<div class="row" style="margin-top: 50px;margin-bottom: 100px;">
     		<div class="col-xs-3">
     			<h3><a th:href="@{/bookshelf}" class="fa fa-long-arrow-left" aria-hidden="true" style="color: #1c1e1c;text-decoration: none;margin-left: 50px;"> Danh sách</a></h3><br/>
-    			<img class="img-responsive shelf-book" th:src="@{'data:image/jpeg;charset=utf-8;base64,' + ${book.imageString}}" />
+    			<img style="max-width: 250px;" class="img-responsive shelf-book" th:src="@{'data:image/jpeg;charset=utf-8;base64,' + ${book.imageString}}" />
     		</div>
     		
     		<div class="col-xs-9" style="margin-left: -80px;padding: 0px 50px;">

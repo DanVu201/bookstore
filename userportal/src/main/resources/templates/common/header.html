@@ -41,25 +41,25 @@
 						<li class="dropdown"><a th:href="@{/bookshelf}"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-haspopup="true" aria-expanded="false"><span
-								class="glyphicon glyphicon-list-alt"></span> BOOKS <span
+								class="glyphicon glyphicon-list-alt"></span> SÁCH <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a th:href="@{/bookshelf}"><span class="glyphicon glyphicon-th-list"></span> Browse All Books</a></li>
+								<li><a th:href="@{/bookshelf}"><span class="glyphicon glyphicon-th-list"></span> Tất cả</a></li>
 								<li><a th:href="@{/searchByCategory(category='Programming')}" 
-							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Programming</a></li>
+							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Lập trình</a></li>
 							
 							<li><a th:href="@{/searchByCategory(category='Engineering')}" 
-							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Engineering</a></li>
+							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Kỹ thuật</a></li>
 							
 							
 							<li><a th:href="@{/searchByCategory(category='Fiction')}" 
-							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Fiction</a></li>
+							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Viễn tưởng</a></li>
 							
 							<li><a th:href="@{/searchByCategory(category='Management')}" 
-							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Management</a></li>
+							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Quản lý</a></li>
 							
 							<li><a th:href="@{/searchByCategory(category='Arts &amp; Literature')}" 
-							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Arts &amp; Literature</a></li>
+							class="list-group-item"><span class="glyphicon glyphicon-book"></span> Nghệ thuật</a></li>
 							
 							<li><a th:href="@{/faq}"><span class="glyphicon glyphicon-question-sign"></span> FAQ</a></li>
 
@@ -67,24 +67,24 @@
 						<form class="navbar-form" th:action="@{/searchBook}" method="post">
 							<div class="form-group">
 								<input id="book_search" type="text" name="keyword" class="form-control"
-									placeholder="Book title" />
+									placeholder="Tên sách" />
 							</div>
 							
 							<button id="search_submit" type="submit" class="btn btn-info btn-sm"><span
-								class="glyphicon glyphicon-search"></span> Search</button>
+								class="glyphicon glyphicon-search"></span> Tìm kiếm</button>
 						
 						</form>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a th:href="@{/shoppingCart/cart}"><span
-								class="glyphicon glyphicon-shopping-cart"></span> SHOPPING CART</a></li>
+								class="glyphicon glyphicon-shopping-cart"></span> Giỏ hàng</a></li>
 						<li><a sec:authorize="isAnonymous()" th:href="@{/login}"><span
-								class="glyphicon glyphicon-user"></span> MY ACCOUNT</a></li>
+								class="glyphicon glyphicon-user"></span> Tài khoản của tôi</a></li>
 						<li><a sec:authorize="isAuthenticated()"
 							th:href="@{/myProfile}"><span
-								class="glyphicon glyphicon-user"></span> MY ACCOUNT</a></li>
+								class="glyphicon glyphicon-user"></span> Tài khoản của tôi</a></li>
 						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}"><span
-								class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
+								class="glyphicon glyphicon-log-out"></span> Đăng xuất</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
