@@ -27,9 +27,9 @@
     <form th:action="@{/shoppingCart/addItem}" method="post">
     	<input hidden="hidden" th:field="*{book.id}" />
     	<div class="row" style="margin-top: 50px;margin-bottom: 100px;">
-    		<div class="col-xs-3">
+    		<div class="col-xs-3" style="margin-top: -50px;">
     			<h3><a th:href="@{/bookshelf}" class="fa fa-long-arrow-left" aria-hidden="true" style="color: #1c1e1c;text-decoration: none;margin-left: 50px;"> Danh sách</a></h3><br/>
-    			<img style="max-width: 250px;" class="img-responsive shelf-book" th:src="@{'data:image/jpeg;charset=utf-8;base64,' + ${book.imageString}}" />
+    			<div id="book_img" style="display: flex;width: 400px;height: 400px;flex-direction: column;justify-items: center;justify-content: center;"><img style="max-width: 250px;max-height: 350px;" class="img-responsive shelf-book" th:src="@{'data:image/jpeg;charset=utf-8;base64,' + ${book.imageString}}" /></div>
     		</div>
     		
     		<div class="col-xs-9" style="margin-left: -80px;padding: 0px 50px;">
