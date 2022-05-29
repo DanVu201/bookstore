@@ -117,8 +117,8 @@
 <!--			<button class="w3-bar-item w3-button w3-large"-->
 <!--					onclick="w3_close()">Close &times;</button>-->
 			<a href="#" class="w3-bar-item w3-button">Trang chủ</a>
-			<a href="#" class="w3-bar-item w3-button">Thêm sách mới</a>
-			<a href="#" class="w3-bar-item w3-button">Danh sách</a>
+			<a th:href="@{/book/add}" class="w3-bar-item w3-button">Thêm sách mới</a>
+			<a th:href="@{/book/bookList}" class="w3-bar-item w3-button">Danh sách</a>
 			<a href="#" class="w3-bar-item w3-button">Đơn hàng</a>
 			<a href="#" class="w3-bar-item w3-button">Khách hàng</a>
 			<a href="#" class="w3-bar-item w3-button">Nhân viên</a>
@@ -133,7 +133,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" th:href="@{/}">Cổng Admin</a>
+					<a class="navbar-brand" th:href="@{/book/bookList}">Admin</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
