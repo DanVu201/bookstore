@@ -10,7 +10,7 @@
 		<div class="row" style="margin-bottom: -100px;">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
-					<span>User Account</span>
+					<span th:text="${userInfo.username}">User Account</span>
 				</h2>
 			</div>
 			<div class="col-xs-4">
@@ -29,43 +29,41 @@
 				<div class="col-xs-4">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<button type="submit" class="btn btn-warning btn-block">Place
-								your order</button>
+							<button type="submit" class="btn btn-warning btn-block">Đặt hàng</button>
 							<p style="font-size: smaller;">
-								By placing your order, you agree to Le's Bookstore <a href="#">privacy</a>
-								notice and <a href="#">conditions</a> of use.
+								Trước khi đặt hàng,bạn đồng ý với thông báo về <a href="#">quyền riêng tư</a>
+								của của hàng và <a href="#">các điều kiện</a> sử dụng chúng
 							</p>
 							<hr />
-							<h3>Order Summary</h3>
+							<h3>Tóm tắt đơn hàng</h3>
 							<div class="row">
-								<div class="col-xs-7 text-left">Total before tax:</div>
+								<div class="col-xs-7 text-left">Tổng trước thuế:</div>
 								<div class="col-xs-5 text-right">
 									$<span th:text="${shoppingCart.grandTotal}"></span>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-xs-7 text-left">Estimated tax:</div>
+								<div class="col-xs-7 text-left">Ước tính thuế:</div>
 								<div class="col-xs-5 text-right">
 									$<span th:with="tax=${shoppingCart.grandTotal*0.06}"
-											th:text="${#numbers.formatDecimal(tax, 0 ,2)}"></span>
+											th:text="${#numbers.formatDecimal(tax, 0 ,0)}"></span>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-7 text-left">
 									<h3 style="color: darkred;">
-										<strong>Order Total: </strong>
+										<strong>Tổng đơn hàng: </strong>
 									</h3>
 								</div>
 								<div class="col-xs-5 text-right">
 									<h3>
-										<strong style="color: darkred;">$<span
+										<strong style="color: darkred;"><span
 											th:with="total=${shoppingCart.grandTotal+shoppingCart.grandTotal*0.06}"
-											th:text="${#numbers.formatDecimal(total, 0 ,2)}"></span></strong>
+											th:text="${#numbers.formatDecimal(total, 0 ,0)}"></span> VNĐ</strong>
 									</h3>
 								</div>
 							</div>
-							<div class="panel-footer">Shipping and handling haven't
-								applied.</div>
+							<div class="panel-footer">Phí vận chuyển và xử lý chưa được áp dụng.</div>
 						</div>
 					</div>
 				</div>
@@ -73,8 +71,7 @@
 				<!-- Checkout Info -->
 				<div class="col-xs-8">
 					<div th:if="${missingRequiredField}">
-						<h5 class="alert alert-warning">There are some fields
-							missing. Field with * is required.</h5>
+						<h5 class="alert alert-warning">Một số trường thiếu thông tin. Trường có dấu * là bắt buộc.</h5>
 					</div>
 
 					<div class="panel-group" id="accordion">
@@ -84,7 +81,7 @@
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
-										href="#shippingInfo"> 1. Shipping Address </a>
+										href="#shippingInfo"> 1. Địa chỉ nhận hàng </a>
 								</h4>
 							</div>
 							<div id="shippingInfo" class="panel-collapse collapse"
@@ -93,8 +90,8 @@
 									<table class="table" th:if="${not emptyShippingList}">
 										<thead>
 											<tr>
-												<th>Available Shipping Address</th>
-												<th>Operations</th>
+												<th>Địa chỉ giao hàng có sẵn</th>
+												<th>Hành động</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -102,67 +99,63 @@
 												<td
 													th:text="${userShipping.userShippingStreet1}+' '+${userShipping.userShippingStreet2}+', '+${userShipping.userShippingCity}
 												+', '+${userShipping.userShippingState}"></td>
-												<td><a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">use
-														this address</a></td>
+												<td><a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">Sử dụng địa chỉ</a></td>
 											</tr>
 										</tbody>
 									</table>
 
 									<div class="form-group">
-										<label for="shippingName">* Name</label> <input type="text"
+										<label for="shippingName">* Tên</label> <input type="text"
 											class="form-control" id="shippingName"
-											placeholder="Receiver Name" name="shippingAddressName"
+											placeholder="Tên người nhận" name="shippingAddressName"
 											th:value="${shippingAddress.shippingAddressName}" />
 									</div>
 
 									<div class="form-group">
-										<label for="shippingStreet">* Street Address</label> <input
+										<label for="shippingStreet">* Tên đường</label> <input
 											type="text" class="form-control" id="shippingStreet"
-											placeholder="Street Address 1" name="shippingAddressStreet1"
+											placeholder="Tên đường" name="shippingAddressStreet1"
 											th:value="${shippingAddress.shippingAddressStreet1}" />
 									</div>
 									<div class="form-group">
 										<input type="text" class="form-control"
-											placeholder="Street Address 2" name="shippingAddressStreet2"
+											placeholder="Số nhà" name="shippingAddressStreet2"
 											th:value="${shippingAddress.shippingAddressStreet2}" />
 									</div>
 
 									<div class="row">
 										<div class="col-xs-4">
 											<div class="form-group">
-												<label for="shippingCity">* City</label> <input type="text"
+												<label for="shippingCity">* Tỉnh/Thành phố</label>
+												<input type="text"
 													class="form-control" id="shippingCity"
-													placeholder="Shipping City" th:name="shippingAddressCity"
+													placeholder="Tỉnh/Thành phố" th:name="shippingAddressCity"
 													required="required"
 													th:value="${shippingAddress.shippingAddressCity}" />
 											</div>
 										</div>
 										<div class="col-xs-4">
 											<div class="form-group">
-												<label for="shippingState">* State</label> <select
-													id="shippingState" class="form-control"
-													th:name="shippingAddressState"
-													th:value="${shippingAddress.shippingAddressState}"
-													required="required">
-													<option value="" disabled="disabled">Please select
-														an option</option>
-													<option th:each="state : ${stateList}" th:text="${state}"
-														th:selected="(${shippingAddress.shippingAddressState}==${state})"></option>
-												</select>
+												<label for="shippingState">* Quận/Huyện</label>
+												<input type="text"
+													   class="form-control" id="shippingState"
+													   placeholder="Quận/Huyện" th:name="shippingAddressState"
+													   required="required"
+													   th:value="${shippingAddress.shippingAddressState}" />
 											</div>
 										</div>
 										<div class="col-xs-4">
 											<div class="form-group">
-												<label for="shippingZipcode">* Zipcode</label> <input
+												<label for="shippingZipcode">* Mã vận chuyển</label> <input
 													type="text" class="form-control" id="shippingZipcode"
-													placeholder="Shipping Zipcode"
+													placeholder="Mã vận chuyển"
 													th:name="shippingAddressZipcode" required="required"
 													th:value="${shippingAddress.shippingAddressZipcode}" />
 											</div>
 										</div>
 									</div>
 									<a data-toggle="collapse" data-parent="#accordion"
-										class="btn btn-warning pull-right" href="#paymentInfo">Next</a>
+										class="btn btn-warning pull-right" href="#paymentInfo">Tiếp theo</a>
 								</div>
 							</div>
 						</div>
@@ -172,7 +165,7 @@
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
-										href="#paymentInfo"> 2. Payment Information </a>
+										href="#paymentInfo"> 2. Thông tin thanh toán </a>
 								</h4>
 							</div>
 
@@ -182,16 +175,15 @@
 									<table class="table" th:if="${not emptyPaymentList}">
 										<thead>
 											<tr>
-												<th>Available Credit Card</th>
-												<th>Operations</th>
+												<th>Thẻ tín dụng khả dụng</th>
+												<th>Hành động</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr th:each="userPayment : ${userPaymentList}">
 												<td th:text="${userPayment.cardName}"></td>
 												<td><a
-													th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">use
-														this payment</a></td>
+													th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">Sử dụng phương thức thanh toán</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -201,27 +193,26 @@
 										<div class="col-xs-12">
 											<img th:src="@{/image/creditcard.png}" class="img-responsive" /><br />
 											<div class="form-group">
-												<label for="cardType">* Select Card Type: </label> <select
+												<label for="cardType">* Chọn loại thẻ: </label> <select
 													class="form-control" id="cardType" name="type"
 													th:value="${payment.type}">
 													<option value="visa">Visa</option>
 													<option value="mastercard">Mastercard</option>
 													<option value="discover">Discover</option>
-													<option value="amex">American Express</option>
 												</select>
 											</div>
 
 											<div class="form-group">
-												<label for="cardHolder">* Card Holder Name:</label> <input
+												<label for="cardHolder">* Tên trên thẻ:</label> <input
 													type="text" class="form-control" id="cardHolder"
-													required="required" placeHolder="Card Holder Name"
+													required="required" placeHolder="Tên trên thẻ"
 													th:name="holderName" th:value="${payment.holderName}" />
 											</div>
 											<div class="form-group">
-												<label for="cardNumber">* Card Number:</label>
+												<label for="cardNumber">* Số thẻ:</label>
 												<div class="input-group">
 													<input type="tel" class="form-control" id="cardNumber"
-														required="required" placeHolder="Valid Card Number"
+														required="required" placeHolder="Số thẻ hợp lệ"
 														th:name="cardNumber" th:value="${payment.cardNumber}" />
 													<span class="input-group-addon"><i
 														class="fa fa-credit-card" aria-hidden="true"></i></span>
@@ -233,12 +224,12 @@
 									<div class="row">
 										<div class="col-xs-7">
 											<div class="form-group">
-												<label>* Expiration Date</label>
+												<label>* Ngày hết hạn</label>
 												<div class="row">
 													<div class="col-xs-6">
 														<select class="form-control" name="expiryMonth"
 															required="required" th:value="${payment.expiryMonth}">
-															<option disabled="disabled">-- Month --</option>
+															<option disabled="disabled">-- Tháng --</option>
 															<option value="01">Jan (01)</option>
 															<option value="02">Feb (02)</option>
 															<option value="03">Mar (03)</option>
@@ -256,7 +247,7 @@
 													<div class="col-xs-6">
 														<select class="form-control" name="expiryYear"
 															th:value="${payment.expiryYear}">
-															<option disabled="disabled">-- Year --</option>
+															<option disabled="disabled">-- Năm --</option>
 															<option value="2017">2017</option>
 															<option value="2018">2018</option>
 															<option value="19">2019</option>
@@ -290,25 +281,25 @@
 									<div class="checkbox">
 										<label> <input id="theSameAsShippingAddress"
 											type="checkbox" name="billingSameAsShipping" value="true" />
-											The same as shipping address
+											Giống với địa chỉ giao hàng
 										</label>
 									</div>
 
 									<div class="form-group">
-										<label for="billingName">* Name</label> <input type="text"
+										<label for="billingName">* Tên</label> <input type="text"
 											class="form-control billingAddress" id="billingName"
-											placeholder="Receiver Name" th:name="billingAddressName"
+											placeholder="Tên người nhận" th:name="billingAddressName"
 											required="required"
 											th:value="${billingAddress.billingAddressName}" />
 									</div>
 									<div class="form-group">
-										<label for="billingAddress">* Street Address</label> <input
+										<label for="billingAddress">* Tên đường</label> <input
 											type="text" class="form-control billingAddress" id="billingAddress"
-											placeholder="Street Address 1"
+											placeholder="Tên đường"
 											th:name="billingAddressStreet1" required="required"
 											th:value="${billingAddress.billingAddressStreet1}" /> <input
 											type="text" class="form-control billingAddress" id="billingAddress"
-											placeholder="Street Address 2"
+											placeholder="Số nhà"
 											th:name="billingAddressStreet2"
 											th:value="${billingAddress.billingAddressStreet2}" />
 									</div>
@@ -316,7 +307,7 @@
 									<div class="row">
 										<div class="col-xs-4">
 											<div class="form-group">
-												<label for="billingCity">* City</label> <input type="text"
+												<label for="billingCity">* Tỉnh/Thành phố</label> <input type="text"
 													class="form-control billingAddress" id="billingCity"
 													placeholder="Billing city" th:name="billingAddressCity"
 													required="required"
@@ -325,23 +316,19 @@
 										</div>
 										<div class="col-xs-4">
 											<div class="form-group">
-												<label for="billingState">* State</label> <select
-													id="billingState" class="form-control billingAddress"
-													th:name="billingAddressState"
-													th:value="${billingAddress.billingAddressState}"
-													required="required">
-													<option value="" disabled="disabled">Please select
-														an option</option>
-													<option th:each="state : ${stateList}" th:text="${state}"
-														th:selected="(${billingAddress.billingAddressState}==${state})"></option>
-												</select>
+												<label for="shippingState">* Quận/Huyện</label>
+												<input type="text"
+													   class="form-control billingAddress" id="billingState"
+													   placeholder="Quận/Huyện" th:name="billingAddressState"
+													   required="required"
+													   th:value="${shippingAddress.shippingAddressState}" />
 											</div>
 										</div>
 										<div class="col-xs-4">
 											<div class="form-group">
-												<label for="billingZipcode">* Zipcode</label> <input
+												<label for="billingZipcode">* Mã hóa đơn</label> <input
 													type="text" class="form-control billingAddress" id="billingZipcode"
-													placeholder="Billing Zipcode"
+													placeholder="Mã hóa đơn"
 													th:name="billingAddressZipcode" required="required"
 													th:value="${billingAddress.billingAddressZipcode}" />
 											</div>
@@ -349,7 +336,7 @@
 									</div>
 
 									<a data-toggle="collapse" data-parent="#accordion"
-										class="btn btn-warning pull-right" href="#reviewItems">Next</a>
+										class="btn btn-warning pull-right" href="#reviewItems">Tiếp theo</a>
 								</div>
 							</div>
 						</div>
@@ -359,32 +346,32 @@
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
-										href="#reviewItems"> 3. Review Items and Shipping </a>
+										href="#reviewItems"> 3. Xem lại các mặt hàng và vận chuyển </a>
 								</h4>
 							</div>
 							<div id="reviewItems" class="panel-collapse collapse">
 								<div class="panel-body">
-									<h4>Choose your shipping method:</h4>
+									<h4>Chọn phương thức vận chuyển:</h4>
 									<div class="radio">
 										<label> <input type="radio" name="shippingMethod"
-											value="groundShipping" checked="checked" /> Ground Shipping
+											value="groundShipping" checked="checked" /> Giao hàng thông thường
 										</label>
 									</div>
 									<div class="radio">
 										<label> <input type="radio" name="shippingMethod"
-											value="premiumShipping" /> Premium Shipping
+											value="premiumShipping" /> Giao hàng cao cấp
 										</label>
 									</div>
 
 									<div class="row">
 										<div class="col-xs-8">
-											<h4>Products</h4>
+											<h4>Sản phẩm</h4>
 										</div>
 										<div class="col-xs-2">
-											<h4>Price</h4>
+											<h4>Giá</h4>
 										</div>
 										<div class="col-xs-2">
-											<h4>Qty</h4>
+											<h4>Số lượng</h4>
 										</div>
 									</div>
 
@@ -402,24 +389,17 @@
 												<div style="margin-left: 50px;">
 													<a th:href="@{/bookDetail?id=}+${cartItem.book.id}"><h4
 															th:text="${cartItem.book.title}"></h4></a>
-													<p th:if="${cartItem.book.inStockNumber&gt;10}"
-														style="color: green;">In Stock</p>
-													<p
-														th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}"
-														style="color: green;">
-														Only <span th:text="${cartItem.book.inStockNumber}"></span>
-														In Stock
-													</p>
+													<p th:if="${cartItem.book.inStockNumber!=0}" style="color: green;">Còn lại
+														<span th:text="${cartItem.book.inStockNumber}"></span> trong kho</p>
 													<p th:if="${cartItem.book.inStockNumber==0}"
-														style="color: darkred;">Product Unavailable</p>
-													<a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">delete</a>
+														style="color: darkred;">Hết hàng</p>
+													<a class="btn btn-danger" th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">Xóa</a>
 												</div>
 											</div>
 
 											<div class="col-xs-2">
 												<h5 style="color: #db3208; font-size: large;">
-													$<span th:text="${cartItem.book.price}"
-														th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
+													<span th:text="${cartItem.book.price}" th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span> VNĐ
 												</h5>
 											</div>
 
@@ -431,18 +411,17 @@
 
 									<hr />
 									<h4 class="col-xs-12 text-right">
-										<strong style="font-size: large;">Order Total (<span
-											th:text="${#lists.size(cartItemList)}"></span> items):
-										</strong> <span style="color: #db3208; font-szie: large;">$<span
-											th:text="${shoppingCart.grandTotal}"></span></span>
+										<strong style="font-size: large;">Tổng đơn hàng (<span
+											th:text="${#lists.size(cartItemList)}"></span> sản phẩm):
+										</strong> <span style="color: #db3208; font-szie: large;"><span
+											th:text="${shoppingCart.grandTotal}"></span> VNĐ</span>
 									</h4>
 									<br />
 									<br />
-									<button type="submit" class="btn btn-warning btn-block">Place
-										your order</button>
+									<button type="submit" class="btn btn-warning btn-block">Đặt hàng</button>
 									<p style="font-size: smaller;">
-										By placing your order, you agree to Le's Bookstore <a href="#">privacy</a>
-										notice and <a href="#">conditions</a> of use.
+										Trước khi đặt hàng,bạn đồng ý với thông báo về <a href="#">quyền riêng tư</a>
+										của của hàng và <a href="#">các điều kiện</a> sử dụng chúng
 									</p>
 								</div>
 							</div>
