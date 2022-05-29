@@ -63,6 +63,7 @@ public class CheckoutController {
                            @RequestParam(value = "missingRequiredField", required = false) boolean missingRequiredField,
                            Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
+        model.addAttribute("userInfo", user);
 
         if (!Objects.equals(cartId, user.getShoppingCart().getId())) {
             return "badRequestPage";
@@ -174,6 +175,7 @@ public class CheckoutController {
             return "redirect:/checkout?id=" + shoppingCart.getId() + "&missingRequiredField=true";
 
         User user = userService.findByUsername(principal.getName());
+        model.addAttribute("userInfo", user);
 
         Order order = orderService.createOrder(shoppingCart, shippingAddress, billingAddress, payment, shippingMethod, user);
 
