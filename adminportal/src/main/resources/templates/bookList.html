@@ -12,13 +12,13 @@
 				<thead>
 					<tr>
 						<th><input th:id="selectAllBooks" type="checkbox" /></th>
-						<th>Title</th>
-						<th>Author</th>
-						<th>Category</th>
-						<th>Price</th>
-						<th>Number In Stock</th>
-						<th>Active?</th>
-						<th>Operation</th>
+						<th>Tiêu đề</th>
+						<th>Tác giả</th>
+						<th>Thể loại</th>
+						<th>Giá</th>
+						<th>Số lượng trong kho</th>
+						<th>Còn hàng?</th>
+						<th>Hoạt động</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,9 +36,9 @@
 						<td>
 							<input hidden="hidden" name="id" th:value="${book.id}" />
 							<button  class="btn btn-danger btn-xs delete-book" value="delete" >
-							<a th:href="@{/book/remove?id=}+${book.id}" class="fa fa-times">Delete</a></button>
+							<a th:href="@{/book/remove?id=}+${book.id}" class="fa fa-times">Xóa</a></button>
 							<button  class="btn btn-success btn-xs delete-book" value="import" >
-								<a th:href="@{/book/import(id=${book.id})}" class="fa fa-times">Import</a></button>
+								<a th:href="@{/book/import(id=${book.id})}" class="fa fa-times">Thêm</a></button>
 						</td>
 					</tr>
 				</tbody>
