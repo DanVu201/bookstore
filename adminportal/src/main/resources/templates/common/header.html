@@ -9,8 +9,10 @@
 
 <!-- Bootstrap core CSS -->
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<!-- Custom styles for this template -->
+
+	<!-- Custom styles for this template -->
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 
 <!-- data table -->
@@ -18,7 +20,6 @@
 <link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet" />
 
 <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
-
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>tinymce.init({ selector:'textarea' });</script>
 
@@ -28,7 +29,7 @@
 <body>
 	<div th:fragment="navbar">
 	<style>.navbar-default {
-        background-color: #a32222;
+        background-color: #49748C;
         border-color: #293872;
     }
 
@@ -111,6 +112,18 @@
             background-color: #293872;
         }
     }</style>
+
+		<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" id="mySidebar">
+<!--			<button class="w3-bar-item w3-button w3-large"-->
+<!--					onclick="w3_close()">Close &times;</button>-->
+			<a href="#" class="w3-bar-item w3-button">Trang chủ</a>
+			<a href="#" class="w3-bar-item w3-button">Thêm sách mới</a>
+			<a href="#" class="w3-bar-item w3-button">Danh sách</a>
+			<a href="#" class="w3-bar-item w3-button">Đơn hàng</a>
+			<a href="#" class="w3-bar-item w3-button">Khách hàng</a>
+			<a href="#" class="w3-bar-item w3-button">Nhân viên</a>
+		</div>
+
 		<nav class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="navbar-header">

@@ -14,7 +14,7 @@ import java.util.Map;
 public interface SalesRepository extends CrudRepository<Sales, Long> {
     @Query(value = "SELECT bo.id, s.quantity FROM book bo " +
             "LEFT JOIN sales s on bo.id = s.book_id " +
-            "WHERE s.month = ?1 AND s.year = ?2" +
+            "WHERE s.month = :month AND s.year = :year " +
             "ORDER BY s.quantity desc",nativeQuery = true)
     List<int[]> listBookByMonth(int month, int year);
 

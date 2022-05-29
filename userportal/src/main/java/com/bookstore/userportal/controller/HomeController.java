@@ -24,7 +24,9 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.*;
+
 @Controller
 public class HomeController {
 
@@ -52,13 +54,21 @@ public class HomeController {
     @Autowired
     private OrderService orderService;
 
-	@Autowired
-	private SalesService salesService;
+    @Autowired
+    private SalesService salesService;
 
-	@RequestMapping("/")
-	public String index() {
-		return "index";
-	}
+    @RequestMapping("/")
+    public String index(Model model) {
+        List<SalesBookDTO> salesBookDTOS = salesService.listSalesBook(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+        List<Book> bookList = new ArrayList<>();
+        for (SalesBookDTO bookDTO : salesBookDTOS) {
+            bookDTO.getBook().get().setImageString(Base64.getEncoder().encodeToString(bookDTO.getBook().get().getImageShow()));
+            bookList.add(bookDTO.getBook().get());
+        }
+        model.addAttribute("bookList", bookList);
+
+        return "index";
+    }
 
     @RequestMapping("/login")
     public String login(Model model) {
