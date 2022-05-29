@@ -26,8 +26,8 @@ public class SalesServiceImpl implements SalesService {
     public List<SalesBookDTO> listSalesBook(int month, int year) {
         List<SalesBookDTO> listBestSeller = new ArrayList<>();
         if(month != 0 && year == 0){
-            year = LocalDate.now().getYear();
-            List<int[]> listMap = salesRepository.listBookByMonth(month, year);
+            int year2 = LocalDate.now().getYear();
+            List<int[]> listMap = salesRepository.listBookByMonth(month, year2);
             for (int i = 0; i < listMap.size(); i++) {
                 Optional<Book> book = bookRepository.findById(Long.valueOf(listMap.get(i)[0]));
                 SalesBookDTO salesBookDTO = SalesBookDTO.builder()

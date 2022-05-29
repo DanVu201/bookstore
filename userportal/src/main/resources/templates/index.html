@@ -128,26 +128,10 @@
 					<div class="item active">
 						<img src="/image/shelf.png" class="img-responsive" />
 						<div class="carousel-caption">
-							<div class="row">
-								<div class="col-xs-2">
-									<a th:href="@{/bookDetail?id=46}"><img class="img-responsive" src="/image/book1.png" /></a>
+							<div class="row" >
+								<div class="col-xs-2" data-th-each="book : ${bookList}">
+									<a th:href="@{/bookDetail?id=}+${book.id}"><img class="img-responsive" th:src="@{'data:image/jpeg;charset=utf-8;base64,' + ${book.imageString}}" /></a>
 								</div>
-								<div class="col-xs-2">
-									<a th:href="@{/bookDetail?id=49}"><img class="img-responsive" src="/image/book2.png" /></a>
-								</div>
-								<div class="col-xs-2">
-									<a th:href="@{/bookDetail?id=152}"><img class="img-responsive" src="/image/book3.png" /></a>
-								</div>
-								<div class="col-xs-2">
-									<a th:href="@{/bookDetail?id=50}"><img class="img-responsive" src="/image/book4.png" /></a>
-								</div>
-								<div class="col-xs-2">
-									<a th:href="@{/bookDetail?id=153}"><img class="img-responsive" src="/image/book5.png" /></a>
-								</div>
-								<div class="col-xs-2">
-									<a th:href="@{/bookDetail?id=48}"><img class="img-responsive" src="/image/book6.png" /></a>
-								</div>
-								
 							</div>
 						</div>
 					</div>
