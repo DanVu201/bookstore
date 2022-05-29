@@ -26,7 +26,7 @@ public class Book {
 	private String category;
 	private int numberOfPages;
 	private double shippingWeight;
-	private double price;
+	private Integer price;
 	private boolean active=true;
 	
 	@Column(columnDefinition="nvarchar(255)")
@@ -143,12 +143,12 @@ public class Book {
 		this.shippingWeight = shippingWeight;
 	}
 
-	public double getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(double listPrice) {
-		this.price = listPrice;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 
 

@@ -18,7 +18,7 @@ public class HomeController {
     private UserService userService;
 
     @RequestMapping("/")
-    public String index() throws Exception {
+    public String index() {
         return "redirect:/home";
     }
 

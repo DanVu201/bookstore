@@ -22,6 +22,9 @@ public class CouponImport {
     @Column(name = "date_import")
     private LocalDate dateImport;
 
+    @Column(name = "price_book")
+    private Double priceBook;
+
     @Column(name = "number_import")
     private Integer numberImport;
 

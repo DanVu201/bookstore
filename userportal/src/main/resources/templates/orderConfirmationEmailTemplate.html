@@ -60,7 +60,7 @@ tr:nth-child(even) {
 		<tr>
 			<th>Chi tiết hóa đơn</th>
 			<th>Thông tin thanh toán</th>
-			<th>Điaj chỉ giao hàng</th>
+			<th>Địa chỉ giao hàng</th>
 		</tr>
 		<tr>
 			<td><span th:text="${order.billingAddress.billingAddressName}"></span><br />
@@ -107,7 +107,7 @@ tr:nth-child(even) {
 			<tr>
 				<td class="highrow"></td>
 				<td class="highrow"></td>
-				<td class="highrow text-center"><strong>Tổng phụ</strong></td>
+				<td class="highrow text-center"><strong>Tổng chưa thuế</strong></td>
 				<td class="highrow text-right" data-th-text="${order.orderTotal}"></td>
 			</tr>
 			<tr>

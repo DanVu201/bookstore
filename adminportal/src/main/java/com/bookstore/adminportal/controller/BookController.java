@@ -44,14 +44,8 @@ public class BookController {
         } else {
             book.setImageShow(new byte[0]);
         }
+        book.setInStockNumber(0);
         bookService.save(book);
-        CouponImport couponImport = CouponImport.builder()
-                .dateImport(LocalDate.now())
-                .numberImport(book.getInStockNumber())
-                .totalPrice(book.getPrice() * book.getInStockNumber())
-                .book(book)
-                .build();
-        couponImportService.save(couponImport);
 
         return "redirect:bookList";
     }
@@ -124,7 +118,8 @@ public class BookController {
         CouponImport couponImport = CouponImport.builder()
                 .dateImport(LocalDate.now())
                 .numberImport(book.getInStockNumber())
-                .totalPrice(book1.getPrice() * book.getInStockNumber())
+                .priceBook(book.getPrice())
+                .totalPrice(book.getPrice() * book.getInStockNumber())
                 .book(book1)
                 .build();
         couponImportService.save(couponImport);

@@ -57,7 +57,7 @@
     									<input type="number" name="qty" style="padding: 0px 10px;">
     								</div>
     								<div class="col-xs-6">
-    									<h4 th:if="*{book.inStockNumber!=0}">Còn lại: <span th:text="${book.inStockNumber}"> </span></h4>
+    									<h4 th:if="*{book.inStockNumber!=0}">Còn lại: <span th:text="${book.inStockNumber}"> </span> quyển trong kho</h4>
     									<h4 th:if="*{book.inStockNumber==0}" style="color:darkred;">Hết hàng</h4>
     									<button type="submit" class="btn btn-warning" style="color:black;border:1px solid black; padding: 10px 40px 10px 40px;">Thêm vào giỏ hàng</button>
     								</div>

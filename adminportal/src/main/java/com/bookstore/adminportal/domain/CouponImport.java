@@ -22,11 +22,14 @@ public class CouponImport {
     @Column(name = "date_import")
     private LocalDate dateImport;
 
+    @Column(name = "price_book")
+    private Integer priceBook;
+
     @Column(name = "number_import")
     private Integer numberImport;
 
     @Column(name = "total_price")
-    private Double totalPrice;
+    private Integer totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "book_id")

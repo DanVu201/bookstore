@@ -7,7 +7,7 @@
 	<div th:replace="common/header :: navbar" />
 
 	<div class="container">
-		<div class="row" style="margin-bottom: -100px;">
+		<div class="row" style="margin-bottom: -100px; display: none">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
 					<span th:text="${userInfo.username}">User Account</span>
@@ -20,7 +20,7 @@
 		<hr
 			style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
 		<img class="img-responsive" src="/image/wood.png"
-			style="margin-top: -75px;" />
+			style="margin-top: -75px; display: none" />
 
 		<div class="row" style="margin-top: 10px;">
 			<form th:action="@{/checkout}" method="post">
@@ -39,14 +39,14 @@
 							<div class="row">
 								<div class="col-xs-7 text-left">Tổng trước thuế:</div>
 								<div class="col-xs-5 text-right">
-									$<span th:text="${shoppingCart.grandTotal}"></span>
+									<span th:text="${shoppingCart.grandTotal}"></span> VNĐ
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-7 text-left">Ước tính thuế:</div>
 								<div class="col-xs-5 text-right">
-									$<span th:with="tax=${shoppingCart.grandTotal*0.06}"
-											th:text="${#numbers.formatDecimal(tax, 0 ,0)}"></span>
+									<span th:with="tax=${shoppingCart.grandTotal*0.06}"
+											th:text="${#numbers.formatDecimal(tax, 0 ,0)}"></span> VNĐ
 								</div>
 							</div>
 							<div class="row">
@@ -309,7 +309,7 @@
 											<div class="form-group">
 												<label for="billingCity">* Tỉnh/Thành phố</label> <input type="text"
 													class="form-control billingAddress" id="billingCity"
-													placeholder="Billing city" th:name="billingAddressCity"
+													placeholder="Tỉnh/Thành phố" th:name="billingAddressCity"
 													required="required"
 													th:value="${billingAddress.billingAddressCity}" />
 											</div>
