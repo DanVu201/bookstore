@@ -28,4 +28,7 @@ public interface SalesRepository extends CrudRepository<Sales, Long> {
 
     @Query("SELECT s FROM Sales s WHERE s.bookId = ?1 AND s.month = ?2 AND s.year = ?3")
     Sales findToInsertOrUpdate(Long bookId, int month, int year);
+
+    @Query(value = "SELECT s.month, s.quantity FROM Sales s WHERE s.bookId = ?1 AND s.year = ?2 ORDER BY s.month asc ")
+    List<int[]> listSales(Long bookId, int year);
 }

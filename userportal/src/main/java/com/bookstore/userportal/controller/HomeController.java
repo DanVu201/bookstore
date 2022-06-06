@@ -641,4 +641,23 @@ public class HomeController {
                                      @RequestParam("year") int year) {
         return salesService.listSalesBook(month, year);
     }
+
+    @RequestMapping("/monthly-statistics")
+    public String statistics(@RequestParam("id") Long bookId,
+                              @RequestParam("year") int year,
+                             Model model){
+        List<int[]> list = salesService.listSales(bookId, year);
+        List<Integer> quantity =new ArrayList<>();
+        List<Integer> month = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            month.add(list.get(i)[0]);
+            quantity.add(list.get(i)[1]);
+        }
+        model.addAttribute("month", month);
+        model.addAttribute("quantity", quantity);
+        return "salesDemo";
+
+    }
+
+
 }

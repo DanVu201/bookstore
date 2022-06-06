@@ -79,4 +79,11 @@ public class SalesServiceImpl implements SalesService {
             salesRepository.save(newSales);
         }
     }
+
+    @Override
+    public List<int[]> listSales(Long bookId, int year) {
+        return salesRepository.listSales(bookId, year);
+    }
+
+
 }
