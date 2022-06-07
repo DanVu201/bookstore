@@ -1,7 +1,6 @@
 package com.bookstore.userportal.domain;
 
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 

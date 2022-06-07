@@ -1,7 +1,10 @@
 package com.bookstore.adminportal.service.impl;
 
+import java.util.Objects;
 import java.util.Set;
 
+import com.bookstore.adminportal.domain.security.Role;
+import com.bookstore.adminportal.repository.UserRoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,28 +27,38 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private RoleRepository roleRepository;
 
-	@Override
-	public User createUser(User user, Set<UserRole> userRoles) {
-		User localUser = userRepository.findByUsername(user.getUsername());
+	@Autowired
+	UserRoleRepository userRoleRepository;
 
+	@Override
+	public User createUser(User user, Role role) {
+		User localUser = userRepository.findByUsername(user.getUsername());
 		if (localUser != null) {
 			LOG.info("user {} already exists. Nothing will be done.", user.getUsername());
 		} else {
-			for (UserRole ur : userRoles) {
-				roleRepository.save(ur.getRole());
+			userRepository.save(user);
+			Role role1 = roleRepository.findByname(role.getName());
+			UserRole userRole = new UserRole();
+			if (Objects.nonNull(role1)) {
+				userRole = new UserRole(user, role1);
+
+			} else {
+				roleRepository.save(role);
+				userRole = new UserRole(user, role);
 			}
-
-			user.getUserRoles().addAll(userRoles);
-
-			localUser = userRepository.save(user);
+			userRoleRepository.save(userRole);
 		}
-
 		return localUser;
 	}
 
 	@Override
 	public User save(User user) {
 		return userRepository.save(user);
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 }

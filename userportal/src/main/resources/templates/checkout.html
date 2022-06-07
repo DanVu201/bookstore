@@ -10,7 +10,6 @@
 		<div class="row" style="margin-bottom: -100px; display: none">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
-					<span th:text="${userInfo.username}">User Account</span>
 				</h2>
 			</div>
 			<div class="col-xs-4">
@@ -97,7 +96,7 @@
 										<tbody>
 											<tr th:each="userShipping : ${userShippingList}">
 												<td
-													th:text="${userShipping.userShippingStreet1}+' '+${userShipping.userShippingStreet2}+', '+${userShipping.userShippingCity}
+													th:text="${userShipping.userShippingStreet2}+' '+${userShipping.userShippingStreet1}+', '+${userShipping.userShippingCity}
 												+', '+${userShipping.userShippingState}"></td>
 												<td><a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">Sử dụng địa chỉ</a></td>
 											</tr>

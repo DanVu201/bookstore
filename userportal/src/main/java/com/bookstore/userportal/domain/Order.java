@@ -31,6 +31,9 @@ public class Order {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private Payment payment;
+
+	@ManyToOne
+	private Employee confirmBy;
 	
 	@ManyToOne
 	private User user;
@@ -41,6 +44,14 @@ public class Order {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Employee getConfirmBy() {
+		return confirmBy;
+	}
+
+	public void setConfirmBy(Employee confirmBy) {
+		this.confirmBy = confirmBy;
 	}
 
 	public Date getOrderDate() {

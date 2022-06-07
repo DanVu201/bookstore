@@ -11,7 +11,7 @@ spring:
     cache: false
 
   datasource:
-    url: jdbc:mariadb://localhost:3308/bookstore
+    url: jdbc:mariadb://localhost:3306/bookstore
     username: root
     password: 2001
 

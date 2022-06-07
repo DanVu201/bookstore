@@ -2,10 +2,12 @@ package com.bookstore.userportal.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import com.bookstore.userportal.domain.*;
 import com.bookstore.userportal.domain.security.PasswordResetToken;
+import com.bookstore.userportal.domain.security.Role;
 import com.bookstore.userportal.domain.security.UserRole;
 import com.bookstore.userportal.repository.*;
 import com.bookstore.userportal.service.UserService;
@@ -36,6 +38,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private PasswordResetTokenRepository passwordResetTokenRepository;
+
+	@Autowired
+	private UserRoleRepository userRoleRepository;
 	
 	@Override
 	public PasswordResetToken getPasswordResetToken(final String token) {
@@ -65,29 +70,29 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@Transactional
-	public User createUser(User user, Set<UserRole> userRoles){
+	public User createUser(User user, Role role){
 		User localUser = userRepository.findByUsername(user.getUsername());
-		
-		if(localUser != null) {
+		if (localUser != null) {
 			LOG.info("user {} already exists. Nothing will be done.", user.getUsername());
 		} else {
-			for (UserRole ur : userRoles) {
-				roleRepository.save(ur.getRole());
-			}
-			
-			user.getUserRoles().addAll(userRoles);
-			
+			user.setUserShippingList(new ArrayList<>());
+			user.setUserPaymentList(new ArrayList<>());
 			ShoppingCart shoppingCart = new ShoppingCart();
 			shoppingCart.setUser(user);
 			user.setShoppingCart(shoppingCart);
-			
-			user.setUserShippingList(new ArrayList<UserShipping>());
-			user.setUserPaymentList(new ArrayList<UserPayment>());
-			
-			localUser = userRepository.save(user);
+			userRepository.save(user);
+			Role role1 = roleRepository.findByname(role.getName());
+			UserRole userRole;
+			if (Objects.nonNull(role1)) {
+				userRole = new UserRole(user, role1);
+			} else {
+				roleRepository.save(role);
+				userRole = new UserRole(user, role);
+			}
+			userRoleRepository.save(userRole);
 		}
-		
 		return localUser;
+
 	}
 	
 	@Override

@@ -5,6 +5,7 @@ import com.bookstore.userportal.domain.UserBilling;
 import com.bookstore.userportal.domain.UserPayment;
 import com.bookstore.userportal.domain.UserShipping;
 import com.bookstore.userportal.domain.security.PasswordResetToken;
+import com.bookstore.userportal.domain.security.Role;
 import com.bookstore.userportal.domain.security.UserRole;
 
 import java.util.Set;
@@ -20,7 +21,7 @@ public interface UserService {
 	
 	User findById(Long id);
 	
-	User createUser(User user, Set<UserRole> userRoles) throws Exception;
+	User createUser(User user, Role role) throws Exception;
 	
 	User save(User user);
 	

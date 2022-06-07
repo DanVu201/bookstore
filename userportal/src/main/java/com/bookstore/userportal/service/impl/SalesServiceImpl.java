@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -61,10 +62,9 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public void insertOrUpdateSalesBook(Long bookId, int quantity, Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+        int year = localDate.getYear();
         Sales sale = salesRepository.findToInsertOrUpdate(bookId, month, year);
         if (sale != null){
             sale.setQuantity(sale.getQuantity() + quantity);

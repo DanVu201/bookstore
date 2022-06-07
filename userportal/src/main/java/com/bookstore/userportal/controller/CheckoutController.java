@@ -179,7 +179,7 @@ public class CheckoutController {
 
         Order order = orderService.createOrder(shoppingCart, shippingAddress, billingAddress, payment, shippingMethod, user);
 
-        mailConstructor.sendOrderConfirmationEmail(user, order, Locale.ENGLISH);
+//        mailConstructor.sendOrderConfirmationEmail(user, order, Locale.ENGLISH);
 
         shoppingCartService.clearShoppingCart(shoppingCart);
 

@@ -29,33 +29,32 @@
 			<div class="row" style="margin-top: 10px;">
 				<div class="col-xs-3">
 					<h3>
-						<label for="category">Category</label>
+						<label for="category">Thể loại</label>
 					</h3>
 					<div class="list-group" id="category">
 						<a th:href="@{/bookshelf(category='all')}"
-							th:classappend="${activeAll}? 'active'" class="list-group-item">All</a>
-						<a th:href="@{/searchByCategory(category='Management')}"
+							th:classappend="${activeAll}? 'active'" class="list-group-item">Tất cả</a>
+						<a th:href="@{/searchByCategory(category='Quản lý')}"
 							th:classappend="${activeManagement}? 'active'"
-							class="list-group-item">Management</a> <a
-							th:href="@{/searchByCategory(category='Fiction')}"
+							class="list-group-item">Quản lý</a> <a
+							th:href="@{/searchByCategory(category='Khoa học viễn tưởng')}"
 							th:classappend="${activeFiction}? 'active'"
-							class="list-group-item">Fiction</a> <a
-							th:href="@{/searchByCategory(category='Engineering')}"
+							class="list-group-item">Khoa học viễn tưởng</a> <a
+							th:href="@{/searchByCategory(category='Kỹ thuật')}"
 							th:classappend="${activeEngineering}? 'active'"
-							class="list-group-item">Engineering</a> <a
-							th:href="@{/searchByCategory(category='Programming')}"
+							class="list-group-item">Kỹ thuật</a> <a
+							th:href="@{/searchByCategory(category='Lập trình')}"
 							th:classappend="${activeProgramming}? 'active'"
-							class="list-group-item">Programming</a> <a
-							th:href="@{/searchByCategory(category='Arts &amp; Literature')}"
+							class="list-group-item">Lập trình</a> <a
+							th:href="@{/searchByCategory(category='Nghệ thuật')}"
 							th:classappend="${activeArtsLiterature}? 'active'"
-							class="list-group-item">Arts &amp; Literature</a>
+							class="list-group-item">Nghệ thuật</a>
 					</div>
 				</div>
 
 				<div class="col-xs-9" style="padding-right: 150px;padding-left: 100px;">
 					<div th:if="${emptyList}">
-						<h5 style="font-style: italic;">Oops, no result is found. Try
-							something else or try again later.</h5>
+						<h5 style="font-style: italic;">Oops, không tìm thấy kết quả. Thử lại.</h5>
 					</div>
 
 					<table border="0" id="bookList">

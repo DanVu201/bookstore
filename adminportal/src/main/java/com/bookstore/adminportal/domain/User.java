@@ -27,11 +27,22 @@ public class User implements UserDetails{
 	private String firstName;
 	@Column(columnDefinition = "nvarchar(255)")
 	private String lastName;
-	
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 	@Column(name="email", nullable = false, updatable = false)
 	private String email;
 	private String phone;
 	private boolean enabled=true;
+
+	@OneToOne(mappedBy = "user")
+	private Employee employee;
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
 	private ShoppingCart shoppingCart;
@@ -46,7 +57,6 @@ public class User implements UserDetails{
 	private List<Order> orderList;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JsonIgnore
 	private Set<UserRole> userRoles = new HashSet<>();
 	
 	public Long getId() {

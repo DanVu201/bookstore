@@ -5,7 +5,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title>E-Commerce Admin</title>
+<title>E-Book Admin</title>
 
 <!-- Bootstrap core CSS -->
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
@@ -116,10 +116,10 @@
 		<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" id="mySidebar">
 <!--			<button class="w3-bar-item w3-button w3-large"-->
 <!--					onclick="w3_close()">Close &times;</button>-->
-			<a href="#" class="w3-bar-item w3-button">Trang chủ</a>
+			<a th:href="@{/}" class="w3-bar-item w3-button">Trang chủ</a>
 			<a th:href="@{/book/add}" class="w3-bar-item w3-button">Thêm sách mới</a>
 			<a th:href="@{/book/bookList}" class="w3-bar-item w3-button">Danh sách</a>
-			<a href="#" class="w3-bar-item w3-button">Đơn hàng</a>
+			<a th:href="@{/order/orderList}" class="w3-bar-item w3-button">Đơn hàng</a>
 			<a href="#" class="w3-bar-item w3-button">Khách hàng</a>
 			<a href="#" class="w3-bar-item w3-button">Nhân viên</a>
 		</div>
@@ -133,7 +133,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" th:href="@{/book/bookList}">Admin</a>
+					<a class="navbar-brand" th:href="@{/}">Admin</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
