@@ -3,7 +3,6 @@ package com.bookstore.userportal.controller;
 import com.bookstore.userportal.domain.*;
 import com.bookstore.userportal.domain.security.PasswordResetToken;
 import com.bookstore.userportal.domain.security.Role;
-import com.bookstore.userportal.domain.security.UserRole;
 import com.bookstore.userportal.dto.SalesBookDTO;
 import com.bookstore.userportal.service.*;
 import com.bookstore.userportal.service.impl.UserSecurityService;
@@ -161,10 +160,8 @@ public class HomeController {
         userService.createPasswordResetTokenForUser(user, token);
 
         String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        logger.info(appUrl+"/newUser?token=" + token);
-        logger.info(password);
 
-//        mailConstructor.sendResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+        mailConstructor.sendResetTokenEmail(appUrl, request.getLocale(), token, user, password);
 
         model.addAttribute("forgetPasswordEmailSent", "true");
 
@@ -505,10 +502,8 @@ public class HomeController {
         userService.createPasswordResetTokenForUser(user, token);
 
         String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        logger.info(appUrl + "/newUser?token=" + token);
-        logger.info(password);
 
-//        mailConstructor.sendResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+        mailConstructor.sendResetTokenEmail(appUrl, request.getLocale(), token, user, password);
 
         model.addAttribute("emailSent", "true");
         model.addAttribute("orderList", user.getOrderList());

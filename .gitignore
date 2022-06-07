@@ -1,3 +1,5 @@
 /.idea/
 /adminportal/.idea/
 /userportal/.idea/
+/userportal/target/
+/adminportal/target/
