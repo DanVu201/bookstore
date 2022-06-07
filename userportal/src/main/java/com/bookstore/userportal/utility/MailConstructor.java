@@ -21,7 +21,7 @@ public class MailConstructor {
     private TemplateEngine templateEngine;
 
     private final String from = "vuduydan03072001@gmail.com";
-    private final String passwordE = "0307201vd";
+    private final String passwordE = "eoriwbokmbjfgwfo";
     private Properties props;
 
     private void inti() {

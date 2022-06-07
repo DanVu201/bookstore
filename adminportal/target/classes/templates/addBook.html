@@ -123,24 +123,25 @@
 							Giá</label>
 						<div class="col-md-8">
 							<div class="input-group">
-								<span class="input-group-addon">VND</span> <input
-									th:value="${book.price}" type="number" name="price" step="1000"
-									class="form-control" id="price" placeholder="Giá" />
+								<span class="input-group-addon">VND</span>
+								<input th:value="${book.price}" type="number" step="1000"
+									   name="price" class="form-control" id="price"
+									   placeholder="Giá" />
 							</div>
 							<span class="help-block">Giá của sách</span>
 						</div>
 					</div>
 
-					<!-- in stock number -->
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="inStockNumber">Số lượng trong kho</label>
-						<div class="col-md-8">
-							<input th:value="${book.inStockNumber}" type="number"
-								   name="inStockNumber" class="form-control" id="inStockNumber"
-								   placeholder="Số lượng trong kho" /> <span
-								class="help-block">Số lượng còn lại</span>
-						</div>
-					</div>
+<!--					&lt;!&ndash; in stock number &ndash;&gt;-->
+<!--					<div class="form-group">-->
+<!--						<label class="col-md-2 control-label" for="inStockNumber">Số lượng trong kho</label>-->
+<!--						<div class="col-md-8">-->
+<!--							<input th:value="${book.inStockNumber}" type="number"-->
+<!--								   name="inStockNumber" class="form-control" id="inStockNumber"-->
+<!--								   placeholder="Số lượng trong kho" /> <span-->
+<!--								class="help-block">Số lượng còn lại</span>-->
+<!--						</div>-->
+<!--					</div>-->
 
 					<!-- status of book -->
 					<div class="form-group">
