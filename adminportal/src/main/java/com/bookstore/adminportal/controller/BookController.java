@@ -4,6 +4,7 @@ import com.bookstore.adminportal.domain.Book;
 import com.bookstore.adminportal.domain.CouponImport;
 import com.bookstore.adminportal.service.BookService;
 import com.bookstore.adminportal.service.CouponImportService;
+import com.bookstore.adminportal.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -28,6 +30,9 @@ public class BookController {
 
     @Autowired
     private CouponImportService couponImportService;
+
+    @Autowired
+    private SalesService salesService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addBook(Model model) {
@@ -124,5 +129,22 @@ public class BookController {
                 .build();
         couponImportService.save(couponImport);
         return "redirect:/book/bookInfo?id=" + book.getId();
+    }
+
+    @RequestMapping("/monthly-statistics")
+    public String statistics(@RequestParam("id") Long bookId,
+                             @RequestParam("year") int year,
+                             Model model){
+        List<int[]> list = salesService.listSales(bookId, year);
+        List<Integer> quantity =new ArrayList<>();
+        List<Integer> month = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            month.add(list.get(i)[0]);
+            quantity.add(list.get(i)[1]);
+        }
+        model.addAttribute("month", month);
+        model.addAttribute("quantity", quantity);
+        return "salesDemo";
+
     }
 }
