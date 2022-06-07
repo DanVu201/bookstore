@@ -81,3 +81,19 @@ hr {
 .form-signin label{
 	display: unset;
 }
+
+.navbar {
+	margin-bottom: 20px;
+	position: fixed;
+	width: 100%;
+}
+
+#bookListTable{
+	margin-top: 100px;
+}
+
+#myChart{
+	margin-left: 500px;
+	position: absolute;
+	top: 100px;
+}
