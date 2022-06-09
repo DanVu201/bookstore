@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="row">
-        <form class="form-horizontal" th:action="@{/employee/add}" method="post">
+        <form style="margin-top: 100px; margin-bottom: 100px" class="form-horizontal" th:action="@{/employee/add}" method="post">
             <fieldset style="margin-left: 250px;">
                 <legend class="center-block">
                     Thông tin nhân viên<span style="font-size: small">  * Bắt buộc phải nhập</span>
@@ -26,12 +26,12 @@
 
                 <!-- startDate -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="startDate">Ngày bắt đầu làm việc</label>
+                    <label class="col-md-2 control-label" for="startDate">* Ngày bắt đầu làm việc</label>
                     <div class="col-md-8">
-                        <input type="date" class="form-control" id="startDate"
+                        <input required="required" type="date" class="form-control" id="startDate"
                                name="startDate"
-                               placeholder="Ngày bắt đầu làm việc"/> <span
-                            class="help-block">Ngày bắt đầu làm việc</span>
+                               placeholder="Ngày bắt đầu làm việc"/>
+<!--                        <span class="help-block">Ngày bắt đầu làm việc</span>-->
                     </div>
                 </div>
 
@@ -42,37 +42,38 @@
                     <div class="col-md-8">
                         <input type="text" name="employeeName" class="form-control" id="employeeName"
                                required="required"
-                               placeholder="Tên nhân viên"/> <span class="help-block">Tên nhân viên</span>
+                               placeholder="Tên nhân viên"/>
+<!--                        <span class="help-block">Tên nhân viên</span>-->
                     </div>
                 </div>
 
                 <!-- phoneNumber -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="phoneNumber">Số điện thoại</label>
+                    <label class="col-md-2 control-label" for="phoneNumber">* Số điện thoại</label>
                     <div class="col-md-8">
-                        <input type="text" name="phoneNumber" class="form-control"
-                               id="phoneNumber" placeholder="Số điện thoại"/><span
-                            class="help-block">Số điện thoại</span>
+                        <input required="required" type="text" name="phoneNumber" class="form-control"
+                               id="phoneNumber" placeholder="Số điện thoại"/>
+<!--                        <span class="help-block">Số điện thoại</span>-->
                     </div>
                 </div>
 
                 <!-- address -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="address">Địa chỉ</label>
+                    <label class="col-md-2 control-label" for="address">* Địa chỉ</label>
                     <div class="col-md-8">
-                        <input type="text" name="address" class="form-control"
-                               id="address" placeholder="Địa chỉ"/><span
-                            class="help-block">Địa chỉ</span>
+                        <input required="required" type="text" name="address" class="form-control"
+                               id="address" placeholder="Địa chỉ"/>
+<!--                        <span class="help-block">Địa chỉ</span>-->
                     </div>
                 </div>
 
                 <!-- email -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="email">Email</label>
+                    <label class="col-md-2 control-label" for="email">* Email</label>
                     <div class="col-md-8">
-                        <input type="text" name="email" class="form-control"
-                               id="email"/><span
-                            class="help-block">Email</span>
+                        <input required="required" type="text" name="email" class="form-control"
+                               id="email" placeholder="Email"/>
+<!--                        <span class="help-block">Email</span>-->
                     </div>
                 </div>
 
@@ -88,12 +89,12 @@
 
                 <!-- salary -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="salary">
+                    <label class="col-md-2 control-label" for="salary">*
                         Lương</label>
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">VND</span>
-                            <input type="number" step="1000"
+                            <input required="required" type="number" step="1000"
                                    name="salary" class="form-control" id="salary"
                                    placeholder="Lương"/>
                         </div>
@@ -102,16 +103,16 @@
 
                 <!-- username -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="username">Tài khoản</label>
+                    <label class="col-md-2 control-label" for="username">* Tài khoản</label>
                     <div class="col-md-8">
-                        <input type="text" name="username" class="form-control"
+                        <input required="required" type="text" name="username" class="form-control"
                                id="username" placeholder="Tài khoản đăng nhập"/>
                     </div>
                 </div>
 
                 <!-- password -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="password">Tài khoản</label>
+                    <label class="col-md-2 control-label" for="password">Mật khẩu</label>
                     <div class="col-md-8">
                         <input type="password" name="password" class="form-control"
                                id="password" placeholder="Mật khẩu"/>
