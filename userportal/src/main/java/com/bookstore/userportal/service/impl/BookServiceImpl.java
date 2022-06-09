@@ -16,7 +16,8 @@ public class BookServiceImpl implements BookService {
 	private BookRepository bookRepository;
 	
 	public List<Book> findAll() {
-		List<Book> bookList = (List<Book>) bookRepository.findAll();
+		List<Book> bookList = (List<Book>) bookRepository.findAllByActiveTrue();
+
 		List<Book> activeBookList = new ArrayList<>();
 		
 		for (Book book: bookList) {

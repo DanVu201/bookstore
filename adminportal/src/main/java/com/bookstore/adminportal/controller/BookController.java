@@ -101,7 +101,9 @@ public class BookController {
 
     @RequestMapping(value = "/remove", method = RequestMethod.GET)
     public String remove(@RequestParam(value = "id") String id, Model model) {
-        bookService.deleteById(Long.parseLong(id));
+        Book bookDelete = bookService.findById(Long.parseLong(id));
+        bookDelete.setActive(false);
+        bookService.save(bookDelete);
         List<Book> bookList = bookService.findAll();
         model.addAttribute("bookList", bookList);
 
