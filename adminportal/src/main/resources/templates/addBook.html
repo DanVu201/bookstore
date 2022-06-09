@@ -40,9 +40,9 @@
 
 					<!-- publisher -->
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="publisher">Nhà xuất bản</label>
+						<label class="col-md-2 control-label" for="publisher"> * Nhà xuất bản</label>
 						<div class="col-md-8">
-							<input type="text" name="publisher" class="form-control"
+							<input required="required" type="text" name="publisher" class="form-control"
 								id="publisher" th:value="${book.publisher}"
 								placeholder="Nhà xuất bản" /> <span class="help-block">Nhà xuất bản của sách</span>
 						</div>
@@ -75,7 +75,7 @@
 						<label class="col-md-2 control-label" for="category">*
 							Thể loại</label>
 						<div class="col-md-8">
-							<select th:value="${book.category}" id="category" name="category"
+							<select required th:value="${book.category}" id="category" name="category"
 								class="form-control">
 								<option value="" selected="selected" disabled="disabled">Lựa chọn</option>
 								<option value="Quản lý"
@@ -119,12 +119,12 @@
 
 					<!-- price -->
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="price">
+						<label class="col-md-2 control-label" for="price">*
 							Giá</label>
 						<div class="col-md-8">
 							<div class="input-group">
 								<span class="input-group-addon">VND</span>
-								<input th:value="${book.price}" type="number" step="1000"
+								<input required="required" th:value="${book.price}" type="number" step="1000"
 									   name="price" class="form-control" id="price"
 									   placeholder="Giá" />
 							</div>
@@ -171,7 +171,7 @@
 							<label for="bookImage">Tải ảnh lên</label>
 						</div>
 						<div class="col-md-8">
-							<input id="bookImage" type="file" name="bookImage"
+							<input required id="bookImage" type="file" name="bookImage"
 								th:value="${book.bookImage}" />
 						</div>
 					</div>
@@ -179,7 +179,7 @@
 					<div class="form-group">
 						<div class="col-md-2"></div>
 						<div class="col-md-8">
-							<button type="submit" class="btn btn-success">Thêm sách</button>
+							<button id="submit" type="submit" class="btn btn-success">Thêm sách</button>
 							<a class="btn btn-danger" th:href="@{/}">Hủy</a>
 						</div>
 					</div>
@@ -187,6 +187,16 @@
 			</form>
 		</div>
 	</div>
+
+	<script>
+		$("#submit").click(function (e){
+			e.preventDefault();
+			if($("#title").val() == ""){
+				alert("Nhap vao title");
+				$(#title).focus();
+			}
+		})
+	</script>
 
 
 	<div th:replace="common/header :: body-bottom-scripts" />
