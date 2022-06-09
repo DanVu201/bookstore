@@ -12,18 +12,29 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
+    private String cartICNumber;
+
+    private String startDate;
+
+    @Column(columnDefinition = "nvarchar(255)")
     private String employeeName;
 
     private String phoneNumber;
 
+    @Column(columnDefinition = "nvarchar(255)")
     private String address;
 
-    private String email;
+    private Integer salary;
+
+    private Boolean sex;
+
+    private Boolean active;
 
     @OneToMany
     private List<Order> orderList;
