@@ -6,6 +6,7 @@ import com.bookstore.adminportal.service.BookService;
 import com.bookstore.adminportal.service.CouponImportService;
 import com.bookstore.adminportal.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,6 +41,7 @@ public class BookController {
         model.addAttribute("book", book);
         return "addBook";
     }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addBookPost(@ModelAttribute("book") Book book, HttpServletRequest request) throws IOException {

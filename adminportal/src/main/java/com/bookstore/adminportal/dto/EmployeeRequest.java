@@ -35,5 +35,7 @@ public class EmployeeRequest {
 
     private String email;
 
+    private Long userId;
+
 
 }

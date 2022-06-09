@@ -1,6 +1,7 @@
 package com.bookstore.adminportal.service.impl;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import com.bookstore.adminportal.domain.security.Role;
@@ -59,6 +60,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+
+	@Override
+	public Optional<User> findById(Long id) {
+		return userRepository.findById(id);
 	}
 
 }

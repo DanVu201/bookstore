@@ -16,6 +16,7 @@
                 <th>Ngày bắt đầu</th>
                 <th>Tên</th>
                 <th>Địa chỉ</th>
+                <th>Giới tính</th>
                 <th>Lương</th>
                 <th>Số điện thoại</th>
                 <th>Email</th>
@@ -28,6 +29,10 @@
                 <td th:text="${employee.startDate}"></td>
                 <td th:text="${employee.employeeName}"></td>
                 <td th:text="${employee.address}"></td>
+                <td>
+                    <span th:if="${employee.sex}">Nam</span>
+                    <span th:th:unless="${employee.sex}">Nữ</span>
+                </td>
                 <td th:text="${employee.salary}"></td>
                 <td th:text="${employee.phoneNumber}"></td>
                 <td th:text="${employee.email}"></td>
@@ -35,8 +40,8 @@
                     <input hidden="hidden" name="id" th:value="${employee.id}" />
                     <button  class="btn btn-danger btn-xs delete-book" value="edit" >
                         <a th:href="@{/employee/edit?id=}+${employee.id}" class="fa fa-times">Sửa</a></button>
-                    <button  class="btn btn-success btn-xs delete-book" value="delete" >
-                        <a th:href="@{/employee/delete?id=}+${employee.id}" class="fa fa-times">Xóa</a></button>
+                    <button  class="btn btn-success btn-xs " value="delete" >
+                        <a th:href="@{/employee/delete(id=${employee.id})}" class="fa fa-times">Xóa</a></button>
                 </td>
             </tr>
             </tbody>

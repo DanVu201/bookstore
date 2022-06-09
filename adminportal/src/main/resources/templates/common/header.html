@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
-	xmlns:sec="http://www.w3.org/1999/xhtml">
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:fragment="common-header">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -116,12 +116,11 @@
 		<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" id="mySidebar">
 <!--			<button class="w3-bar-item w3-button w3-large"-->
 <!--					onclick="w3_close()">Close &times;</button>-->
-			<a th:href="@{/}" class="w3-bar-item w3-button">Trang chủ</a>
-			<a th:href="@{/book/add}" class="w3-bar-item w3-button">Thêm sách mới</a>
-			<a th:href="@{/book/bookList}" class="w3-bar-item w3-button">Danh sách</a>
-			<a th:href="@{/order/orderList}" class="w3-bar-item w3-button">Đơn hàng</a>
-			<a href="#" class="w3-bar-item w3-button">Khách hàng</a>
-			<a th:href="@{/employee/employeeList}" class="w3-bar-item w3-button">Nhân viên</a>
+			<a th:href="@{/}" class="w3-bar-item w3-button" sec:authorize = "hasRole('ADMIN')">Trang chủ</a>
+			<a th:href="@{/book/add}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Thêm sách mới</a>
+			<a th:href="@{/book/bookList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Danh sách</a>
+			<a th:href="@{/order/orderList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đơn hàng</a>
+			<a th:href="@{/employee/employeeList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('ADMIN')">Nhân viên</a>
 		</div>
 
 		<nav class="navbar navbar-default navbar-static-top">
