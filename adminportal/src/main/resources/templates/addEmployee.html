@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"/>
+
+<div class="container">
+    <div class="row">
+        <form class="form-horizontal" th:action="@{/employee/add}" method="post">
+            <fieldset style="margin-left: 250px;">
+                <legend class="center-block">
+                    Thông tin nhân viên<span style="font-size: small">  * Bắt buộc phải nhập</span>
+                </legend>
+
+                <!-- cartICNumber -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="cartICNumber">* Số thẻ</label>
+
+                    <div class="col-md-8">
+                        <input type="text" name="cartICNumber" class="form-control" id="cartICNumber"
+                               required="required" placeholder="Số thẻ"/>
+                        <span class="help-block">Số thẻ căn cước</span>
+                    </div>
+                </div>
+
+                <!-- startDate -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="startDate">Ngày bắt đầu làm việc</label>
+                    <div class="col-md-8">
+                        <input type="date" class="form-control" id="startDate"
+                               name="startDate"
+                               placeholder="Ngày bắt đầu làm việc"/> <span
+                            class="help-block">Ngày bắt đầu làm việc</span>
+                    </div>
+                </div>
+
+                <!-- employeeName -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="employeeName">*
+                        Tên nhân viên</label>
+                    <div class="col-md-8">
+                        <input type="text" name="employeeName" class="form-control" id="employeeName"
+                               required="required"
+                               placeholder="Tên nhân viên"/> <span class="help-block">Tên nhân viên</span>
+                    </div>
+                </div>
+
+                <!-- phoneNumber -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="phoneNumber">Số điện thoại</label>
+                    <div class="col-md-8">
+                        <input type="text" name="phoneNumber" class="form-control"
+                               id="phoneNumber" placeholder="Số điện thoại"/><span
+                            class="help-block">Số điện thoại</span>
+                    </div>
+                </div>
+
+                <!-- address -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="address">Địa chỉ</label>
+                    <div class="col-md-8">
+                        <input type="text" name="address" class="form-control"
+                               id="address" placeholder="Địa chỉ"/><span
+                            class="help-block">Địa chỉ</span>
+                    </div>
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="email">Email</label>
+                    <div class="col-md-8">
+                        <input type="text" name="email" class="form-control"
+                               id="email"/><span
+                            class="help-block">Email</span>
+                    </div>
+                </div>
+
+
+                <!-- sex -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="sex">Giới tính</label>
+                    <div class="col-md-8">
+                        <label><input value="true" type="radio" name="sex" checked="checked"/>Nam</label>
+                        <label><input value="false" type="radio" name="sex"/>Nữ</label>
+                    </div>
+                </div>
+
+                <!-- salary -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="salary">
+                        Lương</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">VND</span>
+                            <input type="number" step="1000"
+                                   name="salary" class="form-control" id="salary"
+                                   placeholder="Lương"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- username -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="username">Tài khoản</label>
+                    <div class="col-md-8">
+                        <input type="text" name="username" class="form-control"
+                               id="username" placeholder="Tài khoản đăng nhập"/>
+                    </div>
+                </div>
+
+                <!-- password -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="password">Tài khoản</label>
+                    <div class="col-md-8">
+                        <input type="password" name="password" class="form-control"
+                               id="password" placeholder="Mật khẩu"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <button type="submit" class="btn btn-success">Thêm nhân viên</button>
+                        <a class="btn btn-danger" th:href="@{/}">Hủy</a>
+                    </div>
+                </div>
+                <input value="true" type="hidden" name="active"/>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+</body>
+</html>
