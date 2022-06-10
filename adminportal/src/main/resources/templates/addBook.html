@@ -97,7 +97,7 @@
 						<label class="col-md-2 control-label" for="pageNumber">Số trang</label>
 
 						<div class="col-md-8">
-							<input type="number" name="numberOfPages" class="form-control"
+							<input min="0" type="number" name="numberOfPages" class="form-control"
 								id="pageNumber" th:value="${book.numberOfPages}"
 								placeholder="Số trang" /> <span class="help-block">Số trang của sách</span>
 						</div>
@@ -108,7 +108,7 @@
 						<label class="col-md-2 control-label" for="shippingWeight">Trọng lượng vận tải</label>
 						<div class="col-md-8">
 							<div class="input-group">
-								<input th:value="${book.shippingWeight}" type="number" step="0.01"
+								<input min="0" th:value="${book.shippingWeight}" type="number" step="0.01"
 									name="shippingWeight" class="form-control" id="shippingWeight"
 									placeholder="Trọng lượng" /> <span
 									class="input-group-addon">kg</span>

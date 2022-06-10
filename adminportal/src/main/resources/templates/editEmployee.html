@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="row">
-        <form class="form-horizontal" th:action="@{/employee/edit}" method="post">
+        <form style="margin-top: 100px" class="form-horizontal" th:action="@{/employee/edit}" method="post">
             <fieldset style="margin-left: 250px;">
                 <legend class="center-block">
                     Thông tin nhân viên<span style="font-size: small">  * Bắt buộc phải nhập</span>
@@ -32,8 +32,8 @@
                     <div class="col-md-8">
                         <input type="date" class="form-control" id="startDate"
                                name="startDate" th:value="${employee.startDate}"
-                               placeholder="Ngày bắt đầu làm việc"/> <span
-                            class="help-block">Ngày bắt đầu làm việc</span>
+                               placeholder="Ngày bắt đầu làm việc"/>
+<!--                        <span class="help-block">Ngày bắt đầu làm việc</span>-->
                     </div>
                 </div>
 
@@ -43,7 +43,8 @@
                     <div class="col-md-8">
                         <input type="text" name="employeeName" class="form-control" id="employeeName"
                                required="required" th:value="${employee.employeeName}"
-                               placeholder="Tên nhân viên"/> <span class="help-block">Tên nhân viên</span>
+                               placeholder="Tên nhân viên"/>
+<!--                        <span class="help-block">Tên nhân viên</span>-->
                     </div>
                 </div>
 
@@ -52,8 +53,8 @@
                     <label class="col-md-2 control-label" for="phoneNumber">Số điện thoại</label>
                     <div class="col-md-8">
                         <input type="text" name="phoneNumber" class="form-control" th:value="${employee.phoneNumber}"
-                               id="phoneNumber" placeholder="Số điện thoại"/><span
-                            class="help-block">Số điện thoại</span>
+                               id="phoneNumber" placeholder="Số điện thoại"/>
+<!--                        <span class="help-block">Số điện thoại</span>-->
                     </div>
                 </div>
 
@@ -62,8 +63,8 @@
                     <label class="col-md-2 control-label" for="address">Địa chỉ</label>
                     <div class="col-md-8">
                         <input type="text" name="address" class="form-control" th:value="${employee.address}"
-                               id="address" placeholder="Địa chỉ"/><span
-                            class="help-block">Địa chỉ</span>
+                               id="address" placeholder="Địa chỉ"/>
+<!--                        <span class="help-block">Địa chỉ</span>-->
                     </div>
                 </div>
 
@@ -72,8 +73,8 @@
                     <label class="col-md-2 control-label" for="email">Email</label>
                     <div class="col-md-8">
                         <input type="text" name="email" class="form-control" th:value="${employee.email}"
-                               id="email"/><span
-                            class="help-block">Email</span>
+                               id="email"/>
+<!--                        <span class="help-block">Email</span>-->
                     </div>
                 </div>
 
@@ -94,7 +95,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">VND</span>
-                            <input type="number" step="1000" th:value="${employee.salary}"
+                            <input min="0" type="number" step="1000" th:value="${employee.salary}"
                                    name="salary" class="form-control" id="salary"
                                    placeholder="Lương"/>
                         </div>
