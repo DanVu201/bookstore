@@ -15,5 +15,5 @@ public interface SalesService {
 
     void insertOrUpdateSalesBook(Long bookId, int quantity, Date date);
 
-    List<int[]> listSales(Long bookId, int year);
+    List<int[]> listSales(int year);
 }

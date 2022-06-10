@@ -318,7 +318,7 @@
 															<tr th:each="userPayment : ${userPaymentList}">
 																<td><input type="radio" name="defaultUserPaymentId"
 																	th:value="${userPayment.id}"
-																	th:checked="${userPayment.defaultPayment}" /></td>
+																	th:checked="${userPayment.defaultPayment}" /><span> Mặc định</span></td>
 																<td th:text="${userPayment.cardName}"></td>
 																<td><a
 																	th:href="@{/updateCreditCard(id=${userPayment.id})}"><i
@@ -537,10 +537,10 @@
 																<td><input type="radio"
 																	name="defaultShippingAddressId"
 																	th:value="${userShipping.id}"
-																	th:checked="${userShipping.userShippingDefault}" /><span>mặc định</span></td>
+																	th:checked="${userShipping.userShippingDefault}" /><span> Mặc định</span></td>
 																<td
 																	th:text="${userShipping.userShippingStreet1}+', '+
-														${userShipping.userShippingCity}+', '+${userShipping.userShippingState}"></td>
+																	${userShipping.userShippingCity}+', '+${userShipping.userShippingState}"></td>
 																<td><a
 																	th:href="@{/updateUserShipping(id=${userShipping.id})}">
 																		<i class="fa fa-pencil" style="color: green">Sửa</i>
@@ -581,7 +581,7 @@
 															th:value="${userShipping.userShippingStreet1}" /> <input
 															type="text" class="form-control"
 															placeholder="Số nhà"
-															th:name="userShppingStreet2"
+															th:name="userShippingStreet2"
 															th:value="${userShipping.userShippingStreet2}" />
 													</div>
 

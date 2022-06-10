@@ -6,7 +6,6 @@ import com.bookstore.adminportal.service.BookService;
 import com.bookstore.adminportal.service.CouponImportService;
 import com.bookstore.adminportal.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,9 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/book")
@@ -112,6 +109,17 @@ public class BookController {
         return "redirect:/book/bookList";
     }
 
+    @RequestMapping(value = "/open", method = RequestMethod.GET)
+    public String open(@RequestParam(value = "id") String id, Model model) {
+        Book bookDelete = bookService.findById(Long.parseLong(id));
+        bookDelete.setActive(true);
+        bookService.save(bookDelete);
+        List<Book> bookList = bookService.findAll();
+        model.addAttribute("bookList", bookList);
+
+        return "redirect:/book/bookList";
+    }
+
     @RequestMapping(value = "/import", method = RequestMethod.GET)
     public String importBook(@RequestParam(value = "id") Long id, Model model) {
         Book book = bookService.findById(id);
@@ -136,10 +144,9 @@ public class BookController {
     }
 
     @RequestMapping("/monthly-statistics")
-    public String statistics(@RequestParam("id") Long bookId,
-                             @RequestParam("year") int year,
+    public String statistics(@RequestParam("year") int year,
                              Model model){
-        List<int[]> list = salesService.listSales(bookId, year);
+        List<int[]> list = salesService.listSales(year);
         List<Integer> quantity =new ArrayList<>();
         List<Integer> month = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -151,4 +158,13 @@ public class BookController {
         return "salesDemo";
 
     }
+
+    @RequestMapping("/monthly-statistics")
+    public String report(@RequestParam("year") int year,
+                         @RequestParam("month") int month,
+                             Model model){
+        return "salesDemo";
+
+    }
+
 }

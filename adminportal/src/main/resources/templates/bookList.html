@@ -17,7 +17,7 @@
 						<th>Thể loại</th>
 						<th>Giá</th>
 						<th>Số lượng trong kho</th>
-						<th>Còn hàng?</th>
+						<th>Trạng thái</th>
 						<th>Hành động</th>
 					</tr>
 				</thead>
@@ -32,11 +32,16 @@
 						<td th:text="${book.category}"></td>
 						<td th:text="${book.price}"></td>
 						<td th:text="${book.inStockNumber}"></td>
-						<td th:text="${book.active}"></td>
+						<td>
+							<span th:if="${book.active}">Còn bán</span>
+							<span th:unless="${book.active}">Ngừng bán</span>
+						</td>
 						<td>
 							<input hidden="hidden" name="id" th:value="${book.id}" />
-							<button  class="btn btn-danger btn-xs delete-book" value="delete" >
-							<a th:href="@{/book/remove?id=}+${book.id}" class="fa fa-times">Xóa</a></button>
+							<button  class="btn btn-success btn-xs" >
+								<a th:href="@{/book/open?id=}+${book.id}" class="fa fa-times">Mở bán</a></button>
+							<button  class="btn btn-danger btn-xs" value="delete" >
+							<a th:href="@{/book/remove?id=}+${book.id}" class="fa fa-times">Ngừng bán</a></button>
 							<button  class="btn btn-success btn-xs delete-book" value="import" >
 								<a th:href="@{/book/import(id=${book.id})}" class="fa fa-times">Thêm</a></button>
 						</td>

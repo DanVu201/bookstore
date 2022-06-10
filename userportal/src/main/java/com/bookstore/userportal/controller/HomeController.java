@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.*;
@@ -124,6 +125,7 @@ public class HomeController {
         } catch (Exception ignored) {
             image = "";
         }
+
         book.setImageString(image);
 
         model.addAttribute("book", book);
@@ -134,11 +136,9 @@ public class HomeController {
     }
 
     @RequestMapping("/forgetPassword")
-    public String forgetPassword(
-            HttpServletRequest request,
-            @ModelAttribute("email") String email,
-            Model model
-    ) throws MessagingException {
+    public String forgetPassword(HttpServletRequest request,
+                                 @ModelAttribute("email") String email,
+                                 Model model) throws MessagingException {
 
         model.addAttribute("classActiveForgetPassword", true);
 
@@ -175,7 +175,11 @@ public class HomeController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-        model.addAttribute("orderList", user.getOrderList());
+        List<Order> orders = user.getOrderList();
+        for (int i = 0; i < orders.size(); i++) {
+            orders.get(i).setOrderTotal(orders.get(i).getOrderTotal().multiply(BigDecimal.valueOf(1.06)));
+        }
+        model.addAttribute("orderList", orders);
 
         UserShipping userShipping = new UserShipping();
         model.addAttribute("userShipping", userShipping);
@@ -192,9 +196,7 @@ public class HomeController {
     }
 
     @RequestMapping("/listOfCreditCards")
-    public String listOfCreditCards(
-            Model model, Principal principal, HttpServletRequest request
-    ) {
+    public String listOfCreditCards(Model model, Principal principal, HttpServletRequest request) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
@@ -209,9 +211,7 @@ public class HomeController {
     }
 
     @RequestMapping("/listOfShippingAddresses")
-    public String listOfShippingAddresses(
-            Model model, Principal principal, HttpServletRequest request
-    ) {
+    public String listOfShippingAddresses(Model model, Principal principal, HttpServletRequest request) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
@@ -226,9 +226,7 @@ public class HomeController {
     }
 
     @RequestMapping("/addNewCreditCard")
-    public String addNewCreditCard(
-            Model model, Principal principal
-    ) {
+    public String addNewCreditCard(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
 
@@ -254,9 +252,7 @@ public class HomeController {
     }
 
     @RequestMapping("/addNewShippingAddress")
-    public String addNewShippingAddress(
-            Model model, Principal principal
-    ) {
+    public String addNewShippingAddress(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
 
@@ -279,11 +275,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/addNewCreditCard", method = RequestMethod.POST)
-    public String addNewCreditCard(
-            @ModelAttribute("userPayment") UserPayment userPayment,
-            @ModelAttribute("userBilling") UserBilling userBilling,
-            Principal principal, Model model
-    ) {
+    public String addNewCreditCard(@ModelAttribute("userPayment") UserPayment userPayment,
+                                   @ModelAttribute("userBilling") UserBilling userBilling,
+                                   Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         userService.updateUserBilling(userBilling, userPayment, user);
 
@@ -299,10 +293,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/addNewShippingAddress", method = RequestMethod.POST)
-    public String addNewShippingAddressPost(
-            @ModelAttribute("userShipping") UserShipping userShipping,
-            Principal principal, Model model
-    ) {
+    public String addNewShippingAddressPost(@ModelAttribute("userShipping") UserShipping userShipping,
+            Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         userService.updateUserShipping(userShipping, user);
 
@@ -319,9 +311,7 @@ public class HomeController {
 
 
     @RequestMapping("/updateCreditCard")
-    public String updateCreditCard(
-            @ModelAttribute("id") Long creditCardId, Principal principal, Model model
-    ) {
+    public String updateCreditCard(@ModelAttribute("id") Long creditCardId, Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         UserPayment userPayment = userPaymentService.findById(creditCardId);
 
@@ -350,9 +340,8 @@ public class HomeController {
     }
 
     @RequestMapping("/updateUserShipping")
-    public String updateUserShipping(
-            @ModelAttribute("id") Long shippingAddressId, Principal principal, Model model
-    ) {
+    public String updateUserShipping(@ModelAttribute("id") Long shippingAddressId,
+                                     Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         UserShipping userShipping = userShippingService.findById(shippingAddressId);
 
@@ -380,9 +369,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/setDefaultPayment", method = RequestMethod.POST)
-    public String setDefaultPayment(
-            @ModelAttribute("defaultUserPaymentId") Long defaultPaymentId, Principal principal, Model model
-    ) {
+    public String setDefaultPayment(@ModelAttribute("defaultUserPaymentId") Long defaultPaymentId,
+                                    Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         userService.setUserDefaultPayment(defaultPaymentId, user);
 
@@ -399,9 +387,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/setDefaultShippingAddress", method = RequestMethod.POST)
-    public String setDefaultShippingAddress(
-            @ModelAttribute("defaultShippingAddressId") Long defaultShippingId, Principal principal, Model model
-    ) {
+    public String setDefaultShippingAddress(@ModelAttribute("defaultShippingAddressId") Long defaultShippingId,
+                                            Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         userService.setUserDefaultShipping(defaultShippingId, user);
 
@@ -418,9 +405,7 @@ public class HomeController {
     }
 
     @RequestMapping("/removeCreditCard")
-    public String removeCreditCard(
-            @ModelAttribute("id") Long creditCardId, Principal principal, Model model
-    ) {
+    public String removeCreditCard(@ModelAttribute("id") Long creditCardId, Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         UserPayment userPayment = userPaymentService.findById(creditCardId);
 
@@ -443,9 +428,7 @@ public class HomeController {
     }
 
     @RequestMapping("/removeUserShipping")
-    public String removeUserShipping(
-            @ModelAttribute("id") Long userShippingId, Principal principal, Model model
-    ) {
+    public String removeUserShipping(@ModelAttribute("id") Long userShippingId, Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         UserShipping userShipping = userShippingService.findById(userShippingId);
 
@@ -540,11 +523,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
-    public String updateUserInfo(
-            @ModelAttribute("user") User user,
-            @ModelAttribute("newPassword") String newPassword,
-            Model model
-    ) throws Exception {
+    public String updateUserInfo(@ModelAttribute("user") User user,
+                                 @ModelAttribute("newPassword") String newPassword, Model model) throws Exception {
         User currentUser = userService.findById(user.getId());
 
         if (currentUser == null) {
@@ -603,10 +583,7 @@ public class HomeController {
     }
 
     @RequestMapping("/orderDetail")
-    public String orderDetail(
-            @RequestParam("id") Long orderId,
-            Principal principal, Model model
-    ) {
+    public String orderDetail(@RequestParam("id") Long orderId, Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         Order order = orderService.findById(orderId);
 
@@ -620,7 +597,11 @@ public class HomeController {
 
             model.addAttribute("userPaymentList", user.getUserPaymentList());
             model.addAttribute("userShippingList", user.getUserShippingList());
-            model.addAttribute("orderList", user.getOrderList());
+            List<Order> orders = user.getOrderList();
+            for (int i = 0; i < orders.size(); i++) {
+                orders.get(i).setOrderTotal(orders.get(i).getOrderTotal().multiply(BigDecimal.valueOf(1.06)));
+            }
+            model.addAttribute("orderList", orders);
 
             UserShipping userShipping = new UserShipping();
             model.addAttribute("userShipping", userShipping);

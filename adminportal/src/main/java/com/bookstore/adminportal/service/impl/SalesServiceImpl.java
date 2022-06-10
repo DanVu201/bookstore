@@ -82,8 +82,8 @@ public class SalesServiceImpl implements SalesService {
     }
 
     @Override
-    public List<int[]> listSales(Long bookId, int year) {
-        return salesRepository.listSales(bookId, year);
+    public List<int[]> listSales(int year) {
+        return salesRepository.listSales(year);
     }
 
 

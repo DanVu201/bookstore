@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
 
-    @Query(value = "SELECT b FROM Book b WHERE b.active = true")
-    List<Book> findAllByActiveTrue();
+    @Query(value = "SELECT b FROM Book b")
+    List<Book> findAll();
 
 
 
