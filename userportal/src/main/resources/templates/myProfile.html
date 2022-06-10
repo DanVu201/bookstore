@@ -148,7 +148,7 @@
 														<td><a th:href="@{/orderDetail(id=${order.id})}"><span
 																th:text="${order.orderDate}"></span></a></td>
 														<td data-th-text="${order.id}"></td>
-														<td data-th-text="${order.orderTotal}"></td>
+														<td data-th-text="${#numbers.formatDecimal(order.orderTotal, 0 ,0)}"></td>
 														<td data-th-text="${order.orderStatus}"></td>
 													</tr>
 												</tbody>
@@ -250,14 +250,14 @@
 																			<td class="text-center"
 																				data-th-text="${cartItem.qty}"></td>
 																			<td class="text-right"
-																				data-th-text="${cartItem.subtotal}"></td>
+																				data-th-text="${#numbers.formatDecimal(cartItem.subtotal, 0 ,0)}"></td>
 																		</tr>
 																		<tr>
 																			<td class="highrow"></td>
 																			<td class="highrow"></td>
 																			<td class="highrow text-center"><strong>Tổng chưa thuế</strong></td>
 																			<td class="highrow text-right"
-																				data-th-text="${order.orderTotal}"></td>
+																				data-th-text="${#numbers.formatDecimal(order.orderTotal, 0 ,0)}"></td>
 																		</tr>
 																		<tr>
 																			<td class="emptyrow"></td>

@@ -38,7 +38,7 @@
 							<div class="row">
 								<div class="col-xs-7 text-left">Tổng trước thuế:</div>
 								<div class="col-xs-5 text-right">
-									<span th:text="${shoppingCart.grandTotal}"></span> VNĐ
+									<span th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0 ,0)}"></span> VNĐ
 								</div>
 							</div>
 							<div class="row">
@@ -413,7 +413,7 @@
 										<strong style="font-size: large;">Tổng đơn hàng (<span
 											th:text="${#lists.size(cartItemList)}"></span> sản phẩm):
 										</strong> <span style="color: #db3208; font-szie: large;"><span
-											th:text="${shoppingCart.grandTotal}"></span> VNĐ</span>
+											th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0 ,0)}"></span> VNĐ</span>
 									</h4>
 									<br />
 									<br />

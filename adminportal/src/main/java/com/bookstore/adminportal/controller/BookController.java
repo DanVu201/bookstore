@@ -159,13 +159,13 @@ public class BookController {
 //
 //    }
 
-    @RequestMapping("/monthly-statistics")
-    public String report(@RequestParam("year") int year,
-                         @RequestParam("month") int month,
-                             Model model){
-        return "salesDemo";
-
-    }
+//    @RequestMapping("/monthly-statistics")
+//    public String report(@RequestParam("year") int year,
+//                         @RequestParam("month") int month,
+//                             Model model){
+//        return "salesDemo";
+//
+//    }
 
     @RequestMapping("/category-statistics")
     public String reportCategorySales(@RequestParam("year") int year,

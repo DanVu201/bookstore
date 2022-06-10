@@ -1,11 +1,18 @@
 package com.bookstore.userportal.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="user_order")
 public class Order {
 	

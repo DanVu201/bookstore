@@ -587,13 +587,24 @@ public class HomeController {
         User user = userService.findByUsername(principal.getName());
         Order order = orderService.findById(orderId);
 
-        if (order.getUser().getId() != user.getId()) {
+        Order orderDetail = Order.builder()
+                .orderDate(order.getOrderDate())
+                .shippingMethod(order.getShippingMethod())
+                .orderStatus(order.getOrderStatus())
+                .orderTotal(order.getOrderTotal())
+                .cartItemList(order.getCartItemList())
+                .shippingAddress(order.getShippingAddress())
+                .billingAddress(order.getBillingAddress())
+                .payment(order.getPayment())
+                .user(order.getUser()).build();
+
+        if (!Objects.equals(order.getUser().getId(), user.getId())) {
             return "badRequestPage";
         } else {
             List<CartItem> cartItemList = cartItemService.findByOrder(order);
             model.addAttribute("cartItemList", cartItemList);
             model.addAttribute("user", user);
-            model.addAttribute("order", order);
+            model.addAttribute("order", orderDetail);
 
             model.addAttribute("userPaymentList", user.getUserPaymentList());
             model.addAttribute("userShippingList", user.getUserShippingList());
