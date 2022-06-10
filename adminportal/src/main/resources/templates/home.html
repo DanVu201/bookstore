@@ -8,29 +8,64 @@
 <body>
 	<div th:replace="common/header :: navbar" />
 	
-	<h1 style="text-align:center; margin-top  : 30px;"> <strong>Cổng Admin</strong></h1>
+	<div class="container" style="padding-top: 100px; padding-left: 180px;">
+		<div class="input_filter">
+			<form action="#" method="post" class="filter_form">
+				<div class="row">
+					<div class="col-md-4">
+						<label for="number">Tháng</label>
+						<input name="month" id="month_input" type="number" min="1" max="12" value="1">
+					</div>
+					<div class="col-md-4">
+						<label for="year">Năm</label>
+						<input name="year" id="year_input" type="number" min="2022" max="2100" value="2022">
+					</div>
+					<div class="col-md-4">
+						<button type="submit" name="filter" id="filter" class="btn btn-success">Thống kê</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="board_main">
+			<div class="row">
+				<div class="col-md-3 statistical">
+					<div class="box_color" id="orange"></div>
+					<div class="box_content">
+						<p class="box_title">Tồn kho</p>
+						<p class="box_value">300</p>
+					</div>
+				</div>
+				<div class="col-md-3 statistical">
+					<div class="box_color" id="blue"></div>
+					<div class="box_content">
+						<p class="box_title">Tồn kho</p>
+						<p class="box_value">300</p>
+					</div>
+				</div>
+				<div class="col-md-3 statistical">
+					<div class="box_color" id="red"></div>
+					<div class="box_content">
+						<p class="box_title">Tồn kho</p>
+						<p class="box_value">300</p>
+					</div>
+				</div>
+				<div class="col-md-3 statistical">
+					<div class="box_color" id="green"></div>
+					<div class="box_content">
+						<p class="box_title">Tồn kho</p>
+						<p class="box_value">300</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sale">
 
-<br/><br/>
-<hr/>
-   <div style="text-align:center; margin-top  : 40px;">
-	<a th:href="@{/book/add}"><button
-			style="background-color: #4CAF50; /* Green */ border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 36px;">Thêm sách </button></a>
+			<canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+			<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
 
+		</div>
 	</div>
-	
-	<div style="text-align:center; margin-top  : 40px;">
-	<a th:href="@{/book/bookList}"><button
-			style="background-color: red; /* Green */ border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 36px;">Xem danh sách</button></a>
-
-	</div>
-<hr/>
-	<div class="sale">
-
-		<canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
-		<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
-	</div>
-	<div>
-		<script th:inline="javascript">
+	<script th:inline="javascript">
 			var xValues =[[${month}]];
 			var yValues = [[${quantity}]];
 
@@ -56,10 +91,9 @@
 					}
 				}
 			});
-		</script>
-	</div>
-	<div>
-		<script th:inline="javascript">
+	</script>
+
+	<script th:inline="javascript">
 			var xValues =[[${category}]];
 			var yValues = [[${quantityCategory}]];
 			var barColors = [
@@ -82,12 +116,12 @@
 				options: {
 					title: {
 						display: true,
-						text: "World Wide Wine Production 2018"
+						text: "Thống kê tỉ lệ thể loại sách bán ra 2022"
 					}
 				}
 			});
-		</script>
-	</div>
+	</script>
+
 
 
 

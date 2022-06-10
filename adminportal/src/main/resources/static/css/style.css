@@ -97,3 +97,83 @@ hr {
 	position: absolute;
 	top: 100px;
 }
+
+.input_filter{
+	width: 80vw;
+	height: 80px;
+	background-color: #ebe9e9;
+	border-radius: 10px;
+	line-height: 80px;
+	padding-left: 50px;
+}
+
+#month_input, #year_input{
+	height: 30px;
+	width: 200px;
+	border-radius: 5px;
+	outline: none;
+	border: none;
+	padding: 5px;
+	margin: 20px;
+}
+
+#filter {
+	width: 120px;
+	height: 35px;
+	border: none;
+	outline: none;
+}
+.col-md-3{
+	padding: 0px;
+}
+
+.board_main{
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+}
+
+.statistical{
+	height: 100px;
+	background-color: #ebe9e9;
+	width: 320px;
+	margin: 20px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+}
+.box_color{
+	width: 100px;
+	height: 100px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+#orange{
+	background-color: orange;
+}
+#red{
+	background-color: #b92c28;
+}
+#blue{
+	background-color: #2b669a;
+}
+#green{
+	background-color: #3c763d;
+}
+.box_content{
+	margin-left: 20px;
+	margin-top: 10px;
+}
+.box_title{
+	font-weight: bolder;
+}
+
+.sale{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	border: 1px solid dodgerblue;
+	border-radius: 10px;
+	margin-top: 100px;
+	padding: 50px;
+}
