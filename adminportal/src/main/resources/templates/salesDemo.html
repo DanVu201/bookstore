@@ -6,83 +6,68 @@
 <div th:replace="common/header :: navbar" />
 <div class="sale">
 
-    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+    <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+</div>
+<div>
+    <script th:inline="javascript">
+        var xValues =[[${month}]];
+        var yValues = [[${quantity}]];
 
+        var barColors = ["green","green","green","green","green","green"];
+
+        new Chart("myChart1", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: {display: false},
+                title: {
+                    display: true,
+                    text: "Doanh số hàng tháng"
+                },
+                scales: {
+                    yAxes: [{ticks: {min: 10, max:200}}],
+                }
+            }
+        });
+    </script>
+</div>
+<div>
+    <script th:inline="javascript">
+        var xValues =[[${category}]];
+        var yValues = [[${quantityCategory}]];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+        ];
+
+        new Chart("myChart2", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
+    </script>
 </div>
 
-<script th:inline="javascript">
-    var xValues =[[${month}]];
-    var yValues = [[${quantity}]];
-
-    // new Chart("myChart", {
-    //     type: "line",
-    //     data: {
-    //         labels: xValues,
-    //         datasets: [{
-    //             fill: false,
-    //             lineTension: 0,
-    //             backgroundColor: "rgba(0,0,255,1.0)",
-    //             borderColor: "rgba(0,0,255,0.1)",
-    //             data: yValues
-    //         }]
-    //     },
-    //     options: {
-    //         legend: {display: false},
-    //         scales: {
-    //             yAxes: [{ticks: {min: 10, max:200}}],
-    //         }
-    //     }
-    // });
-
-
-    // var barColors = [
-    //     "#b91d47",
-    //     "#00aba9",
-    //     "#2b5797",
-    //     "#e8c3b9",
-    //     "#1e7145",
-    //     "#c4ffdf"
-    // ];
-    //
-    // new Chart("myChart", {
-    //     type: "pie",
-    //     data: {
-    //         labels: xValues,
-    //         datasets: [{
-    //             backgroundColor: barColors,
-    //             data: yValues
-    //         }]
-    //     },
-    //     options: {
-    //         title: {
-    //             display: true,
-    //             text: "World Wide Wine Production 2018"
-    //         }
-    //     }
-    // });
-
-    var barColors = ["green","green","green","green","green","green"];
-
-    new Chart("myChart", {
-        type: "bar",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            legend: {display: false},
-            title: {
-                display: true,
-                text: "Doanh số hàng tháng"
-            },
-            scales: {
-                yAxes: [{ticks: {min: 10, max:200}}],
-            }
-        }
-    });
-</script>
 <div th:replace="common/header :: body-bottom-scripts" />
 </body>

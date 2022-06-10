@@ -61,7 +61,7 @@ public class SalesServiceImpl implements SalesService {
     }
 
     @Override
-    public void insertOrUpdateSalesBook(Long bookId, int quantity, Date date) {
+    public void insertOrUpdateSalesBook(Long bookId, int quantity, Date date, String category) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int month = calendar.get(Calendar.MONTH);
@@ -76,6 +76,7 @@ public class SalesServiceImpl implements SalesService {
                     .bookId(bookId)
                     .month(month)
                     .year(year)
+                    .category(category)
                     .quantity(quantity).build();
             salesRepository.save(newSales);
         }
@@ -84,6 +85,11 @@ public class SalesServiceImpl implements SalesService {
     @Override
     public List<int[]> listSales(int year) {
         return salesRepository.listSales(year);
+    }
+
+    @Override
+    public List<String[]> listAllSales(int year) {
+        return salesRepository.listAllSales(year);
     }
 
 

@@ -27,4 +27,7 @@ public class Sales {
     @Column(name = "year")
     private int year;
 
+    @Column(name = "category")
+    private String category;
+
 }

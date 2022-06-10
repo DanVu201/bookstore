@@ -143,21 +143,21 @@ public class BookController {
         return "redirect:/book/bookInfo?id=" + book.getId();
     }
 
-    @RequestMapping("/monthly-statistics")
-    public String statistics(@RequestParam("year") int year,
-                             Model model){
-        List<int[]> list = salesService.listSales(year);
-        List<Integer> quantity =new ArrayList<>();
-        List<Integer> month = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            month.add(list.get(i)[0]);
-            quantity.add(list.get(i)[1]);
-        }
-        model.addAttribute("month", month);
-        model.addAttribute("quantity", quantity);
-        return "salesDemo";
-
-    }
+//    @RequestMapping("/monthly-statistics")
+//    public String statistics(@RequestParam("year") int year,
+//                             Model model){
+//        List<int[]> list = salesService.listSales(year);
+//        List<Integer> quantity =new ArrayList<>();
+//        List<Integer> month = new ArrayList<>();
+//        for (int i = 0; i < list.size(); i++) {
+//            month.add(list.get(i)[0]);
+//            quantity.add(list.get(i)[1]);
+//        }
+//        model.addAttribute("month", month);
+//        model.addAttribute("quantity", quantity);
+//        return "salesDemo";
+//
+//    }
 
     @RequestMapping("/monthly-statistics")
     public String report(@RequestParam("year") int year,
@@ -167,4 +167,28 @@ public class BookController {
 
     }
 
+    @RequestMapping("/category-statistics")
+    public String reportCategorySales(@RequestParam("year") int year,
+                         Model model){
+        List<String[]> listCategory = salesService.listAllSales(year);
+        List<String> category = new ArrayList<>();
+        List<Integer> quantityCategory = new ArrayList<>();
+        for (int i = 0; i < listCategory.size(); i++) {
+            category.add(listCategory.get(i)[1]);
+            quantityCategory.add(Integer.valueOf(listCategory.get(i)[0]));
+        }
+        List<int[]> list = salesService.listSales(year);
+        List<Integer> quantity =new ArrayList<>();
+        List<Integer> month = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            month.add(list.get(i)[0]);
+            quantity.add(list.get(i)[1]);
+        }
+        model.addAttribute("month", month);
+        model.addAttribute("quantity", quantity);
+        model.addAttribute("category", category);
+        model.addAttribute("quantityCategory", quantityCategory);
+        return "home";
+
+    }
 }

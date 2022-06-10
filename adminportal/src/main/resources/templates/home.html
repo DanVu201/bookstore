@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <head th:replace="common/header :: common-header">
 
 </head>
@@ -23,6 +24,70 @@
 
 	</div>
 <hr/>
+	<div class="sale">
+
+		<canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+		<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+	</div>
+	<div>
+		<script th:inline="javascript">
+			var xValues =[[${month}]];
+			var yValues = [[${quantity}]];
+
+			var barColors = ["green","green","green","green","green","green"];
+
+			new Chart("myChart1", {
+				type: "bar",
+				data: {
+					labels: xValues,
+					datasets: [{
+						backgroundColor: barColors,
+						data: yValues
+					}]
+				},
+				options: {
+					legend: {display: false},
+					title: {
+						display: true,
+						text: "Doanh số hàng tháng"
+					},
+					scales: {
+						yAxes: [{ticks: {min: 10, max:200}}],
+					}
+				}
+			});
+		</script>
+	</div>
+	<div>
+		<script th:inline="javascript">
+			var xValues =[[${category}]];
+			var yValues = [[${quantityCategory}]];
+			var barColors = [
+				"#b91d47",
+				"#00aba9",
+				"#2b5797",
+				"#e8c3b9",
+				"#1e7145"
+			];
+
+			new Chart("myChart2", {
+				type: "pie",
+				data: {
+					labels: xValues,
+					datasets: [{
+						backgroundColor: barColors,
+						data: yValues
+					}]
+				},
+				options: {
+					title: {
+						display: true,
+						text: "World Wide Wine Production 2018"
+					}
+				}
+			});
+		</script>
+	</div>
 
 
 

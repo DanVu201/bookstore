@@ -61,7 +61,7 @@ public class SalesServiceImpl implements SalesService {
     }
 
     @Override
-    public void insertOrUpdateSalesBook(Long bookId, int quantity, Date date) {
+    public void insertOrUpdateSalesBook(Long bookId, int quantity, Date date, String category) {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int month = localDate.getMonthValue();
         int year = localDate.getYear();
@@ -75,6 +75,7 @@ public class SalesServiceImpl implements SalesService {
                     .bookId(bookId)
                     .month(month)
                     .year(year)
+                    .category(category)
                     .quantity(quantity).build();
             salesRepository.save(newSales);
         }

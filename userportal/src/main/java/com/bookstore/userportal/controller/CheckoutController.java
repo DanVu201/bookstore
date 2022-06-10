@@ -210,7 +210,7 @@ public class CheckoutController {
         model.addAttribute("estimatedDeliveryDate", estimatedDeliveryDate);
 
         for (CartItem cartItem: cartItemList) {
-            salesService.insertOrUpdateSalesBook(cartItem.getBook().getId(), cartItem.getQty(), Date.from(Instant.now()));
+            salesService.insertOrUpdateSalesBook(cartItem.getBook().getId(), cartItem.getQty(), Date.from(Instant.now()), cartItem.getBook().getCategory());
         }
 
         return "orderSubmittedPage";
