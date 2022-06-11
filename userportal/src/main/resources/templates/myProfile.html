@@ -152,8 +152,8 @@
 														<td data-th-text="${#numbers.formatDecimal(order.orderTotal, 0 ,0)}"></td>
 														<td data-th-text="${order.orderStatus}"></td>
 														<td>
-															<button  class="btn btn-success btn-xs" th:if="${order.orderStatus} == 'Đang giao'">
-																<a th:href="@{/order/confirm(id=${order.id})}" class="fa fa-times">Đã nhận hàng</a></button>
+															<button style="margin-left: 0px"  class="btn btn-success btn-xs" th:if="${order.orderStatus} == 'Đang giao'">
+																<a style="color: white; text-decoration: none; padding: 10px" th:href="@{/order/confirm(id=${order.id})}">Đã nhận hàng</a></button>
 														</td>
 													</tr>
 												</tbody>

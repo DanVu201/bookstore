@@ -119,10 +119,12 @@
 			<a th:href="@{/}" class="w3-bar-item w3-button" sec:authorize = "hasRole('ADMIN')">Trang chủ</a>
 			<a th:href="@{/book/add}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Thêm sách mới</a>
 			<a th:href="@{/book/bookList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Danh sách</a>
-			<a th:href="@{/order/orderList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đơn hàng</a>
-			<a th:href="@{/order/orderShippingList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đang giao</a>
-			<a th:href="@{/order/orderCompleteList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đã nhận</a>
-			<a th:href="@{/order/orderCancelList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đã hủy</a>
+<!--			Toggle slide-->
+			<a href="#" class="w3-bar-item w3-button order_menu" sec:authorize = "hasRole('EMPLOYEE')">Đơn hàng</a>
+			<a style="display: none" th:href="@{/order/orderShippingList}" class="w3-bar-item w3-button child_order_menu" sec:authorize = "hasRole('EMPLOYEE')">Đang giao</a>
+			<a style="display: none" th:href="@{/order/orderCompleteList}" class="w3-bar-item w3-button child_order_menu" sec:authorize = "hasRole('EMPLOYEE')">Đã nhận</a>
+			<a style="display: none" th:href="@{/order/orderCancelList}" class="w3-bar-item w3-button child_order_menu" sec:authorize = "hasRole('EMPLOYEE')">Đã hủy</a>
+<!--			End Toggle slide-->
 			<a th:href="@{/employee/employeeList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('ADMIN')">Nhân viên</a>
 		</div>
 
@@ -169,6 +171,14 @@
 		<!-- data table -->
 		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
 		<script th:src="@{/js/dataTables.bootstrap.min.js}"></script>
+		<script>
+			$(document).ready(function(){
+				$(".order_menu").click(function(e){
+					e.preventDefault()
+					$(".child_order_menu").slideToggle("fast");
+				});
+			});
+		</script>
 	</div>
 </body>
 </html>
