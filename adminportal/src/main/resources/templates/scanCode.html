@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+<div th:replace="common/header :: navbar" />
+
+<div class="container">
+  <div class="row">
+    <form style="margin-top: 100px; margin-bottom: 100px" class="form-horizontal" th:action="@{/book/add-offline}" method="post"
+          enctype="multipart/form-data">
+      <fieldset style="margin-left: 250px;">
+
+
+          <input type="file" name="file" accept="image/png" capture="camera">
+          <input type="submit" value="Upload">
+
+
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<script>
+  $("#submit").click(function (e){
+    e.preventDefault();
+    if($("#title").val() == ""){
+      alert("Nhap vao title");
+      $(#title).focus();
+    }
+  })
+</script>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

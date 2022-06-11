@@ -8,14 +8,17 @@ import com.bookstore.adminportal.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -192,5 +195,23 @@ public class BookController {
         model.addAttribute("quantityCategory", quantityCategory);
         return "home";
 
+    }
+
+    @RequestMapping("/scanQR")
+    public String scan() throws Exception {
+        return "scanCode";
+    }
+
+
+    @RequestMapping("/add-offline")
+    @ResponseBody
+    public String readQR(@RequestParam("file") MultipartFile file) throws Exception {
+        File convFile = new File(file.getOriginalFilename());
+        convFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
+        bookService.scanQR(convFile);
+        return "scanCode";
     }
 }
