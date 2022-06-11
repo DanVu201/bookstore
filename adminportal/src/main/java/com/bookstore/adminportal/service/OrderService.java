@@ -7,7 +7,13 @@ import java.util.Optional;
 
 public interface OrderService {
 
-    List<Order> findByOrderStatus(String orderStatus);
+    List<Order> findByOrderStatus();
+
+    List<Order> findByOrderStatusShipping();
+
+    List<Order> findByOrderStatusComplete();
+
+    List<Order> findByOrderStatusCancel();
 
     Optional<Order> findById(Long id);
 

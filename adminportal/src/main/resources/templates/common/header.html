@@ -120,6 +120,9 @@
 			<a th:href="@{/book/add}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Thêm sách mới</a>
 			<a th:href="@{/book/bookList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Danh sách</a>
 			<a th:href="@{/order/orderList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đơn hàng</a>
+			<a th:href="@{/order/orderShippingList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đang giao</a>
+			<a th:href="@{/order/orderCompleteList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đã nhận</a>
+			<a th:href="@{/order/orderCancelList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('EMPLOYEE')">Đã hủy</a>
 			<a th:href="@{/employee/employeeList}" class="w3-bar-item w3-button" sec:authorize = "hasRole('ADMIN')">Nhân viên</a>
 		</div>
 

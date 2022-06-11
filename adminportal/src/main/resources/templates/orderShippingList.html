@@ -15,7 +15,6 @@
                 <th>Mã đơn hàng</th>
                 <th>Tổng</th>
                 <th>Trạng thái</th>
-                <th>Hành động</th>
             </tr>
             </thead>
             <tbody>
@@ -25,15 +24,6 @@
                 <td th:text="${order.orderId}"></td>
                 <td th:text="${#numbers.formatDecimal(order.orderTotal,0,0)}"></td>
                 <td th:text="${order.orderStatus}"></td>
-                <td>
-                    <input hidden="hidden" name="id" th:value="${order.orderId}" />
-                    <button  class="btn btn-success btn-xs " >
-                        <a th:href="@{/order/confirm?id=}+${order.orderId}" class="fa fa-times">Xác nhận</a></button>
-                    <button  class="btn btn-success btn-xs" style="background: dodgerblue">
-                        <a th:href="@{/order/ship?id=}+${order.orderId}" class="fa fa-times">Giao hàng</a></button>
-                    <button  class="btn btn-danger btn-xs" >
-                        <a th:href="@{/order/cancel?id=}+${order.orderId}" class="fa fa-times">Hủy</a></button>
-                </td>
             </tr>
             </tbody>
         </table>

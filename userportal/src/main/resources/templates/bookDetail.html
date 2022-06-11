@@ -54,7 +54,7 @@
     								<div class="col-xs-6">
     									<p style="font-weight: bold">Giá: <span><span th:text="${book.price}"></span> VNĐ</span></p>
     									<span style="font-weight: bold">Số lượng: </span>
-    									<input type="number" name="qty" style="padding: 0px 10px;">
+    									<input type="number" name="qty" style="padding: 0px 10px;" value="1">
     								</div>
     								<div class="col-xs-6">
     									<h4 th:if="*{book.inStockNumber!=0}">Còn lại: <span th:text="${book.inStockNumber}"> </span> quyển trong kho</h4>

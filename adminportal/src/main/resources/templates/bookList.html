@@ -40,9 +40,9 @@
 							<input hidden="hidden" name="id" th:value="${book.id}" />
 							<button  class="btn btn-success btn-xs" >
 								<a th:href="@{/book/open?id=}+${book.id}" class="fa fa-times">Mở bán</a></button>
-							<button  class="btn btn-danger btn-xs" value="delete" >
+							<button  class="btn btn-danger btn-xs" >
 							<a th:href="@{/book/remove?id=}+${book.id}" class="fa fa-times">Ngừng bán</a></button>
-							<button  class="btn btn-success btn-xs delete-book" value="import" >
+							<button  class="btn btn-success btn-xs" value="import" >
 								<a th:href="@{/book/import(id=${book.id})}" class="fa fa-times">Thêm</a></button>
 						</td>
 					</tr>

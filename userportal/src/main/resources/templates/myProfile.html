@@ -138,9 +138,10 @@
 												<thead>
 													<tr>
 														<th>Ngày đặt</th>
-														<th>Mã đặt</th>
+														<th>Mã đơn hàng</th>
 														<th>Tổng</th>
 														<th>Trạng thái</th>
+														<th>Hành động</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -150,6 +151,10 @@
 														<td data-th-text="${order.id}"></td>
 														<td data-th-text="${#numbers.formatDecimal(order.orderTotal, 0 ,0)}"></td>
 														<td data-th-text="${order.orderStatus}"></td>
+														<td>
+															<button  class="btn btn-success btn-xs" >
+																<a th:href="@{/order/confirm(id=${order.id})}" class="fa fa-times">Đã nhận hàng</a></button>
+														</td>
 													</tr>
 												</tbody>
 											</table>
@@ -159,7 +164,7 @@
 													<div class="col-xs-12">
 														<div class="text-center">
 															<h2>
-																Chi tiết đơn hàng #<span th:text="${order.id}"></span>
+																Chi tiết đơn hàng
 															</h2>
 														</div>
 														<hr />

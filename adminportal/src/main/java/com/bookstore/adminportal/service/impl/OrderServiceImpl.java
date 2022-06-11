@@ -17,8 +17,23 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public List<Order> findByOrderStatus(String orderStatus) {
-        return orderRepository.findByOrderStatus(orderStatus);
+    public List<Order> findByOrderStatus() {
+        return orderRepository.findByOrderStatus();
+    }
+
+    @Override
+    public List<Order> findByOrderStatusShipping() {
+        return orderRepository.findByOrderStatusShipping();
+    }
+
+    @Override
+    public List<Order> findByOrderStatusComplete() {
+        return orderRepository.findByOrderStatusComplete();
+    }
+
+    @Override
+    public List<Order> findByOrderStatusCancel() {
+        return orderRepository.findByOrderStatusCancel();
     }
 
     @Override

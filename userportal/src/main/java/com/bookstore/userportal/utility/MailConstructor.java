@@ -20,8 +20,8 @@ public class MailConstructor {
     @Autowired
     private TemplateEngine templateEngine;
 
-    private final String from = "vuduydan03072001@gmail.com";
-    private final String passwordE = "eoriwbokmbjfgwfo";
+    private final String from = "bookstore64cs1@gmail.com";
+    private final String passwordE = "joqakkvishlikflk";
     private Properties props;
 
     private void inti() {
@@ -40,7 +40,8 @@ public class MailConstructor {
                                     String token, User user, String password) throws MessagingException {
         inti();
         String url = contextPath + "/newUser?token=" + token;
-        String text = "\nPlease click on this link to verify your email and edit your personal information. Your password is: \n" + password;
+        String text = "\nChọn vào đường dẫn trên để xác nhận gmail và thông tin người dùng của bạn.\n" +
+                "Mật khẩu hiện tại của bạn là: " + password;
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {

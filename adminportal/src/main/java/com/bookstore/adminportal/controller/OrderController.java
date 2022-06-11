@@ -1,10 +1,9 @@
 package com.bookstore.adminportal.controller;
 
-import com.bookstore.adminportal.domain.Order;
-import com.bookstore.adminportal.domain.User;
-import com.bookstore.adminportal.domain.UserShipping;
+import com.bookstore.adminportal.domain.*;
 import com.bookstore.adminportal.dto.OrderListDTO;
 import com.bookstore.adminportal.repository.OrderRepository;
+import com.bookstore.adminportal.service.BookService;
 import com.bookstore.adminportal.service.OrderService;
 import com.bookstore.adminportal.service.UserService;
 import com.bookstore.adminportal.utility.USConstants;
@@ -28,10 +27,12 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BookService bookService;
+
     @RequestMapping("/orderList")
     public String getOrderList(Model model) {
-
-        List<Order> orderList = orderService.findByOrderStatus("Đã tạo");
+        List<Order> orderList = orderService.findByOrderStatus();
         List<OrderListDTO> orderListDTO = new ArrayList<>();
         for (Order order: orderList) {
             OrderListDTO orderDTO = OrderListDTO.builder()
@@ -48,6 +49,63 @@ public class OrderController {
         return "orderlist";
     }
 
+    @RequestMapping("/orderShippingList")
+    public String getOrderShippingList(Model model) {
+        List<Order> orderList = orderService.findByOrderStatusShipping();
+        List<OrderListDTO> orderListDTO = new ArrayList<>();
+        for (Order order: orderList) {
+            OrderListDTO orderDTO = OrderListDTO.builder()
+                    .userId(order.getUser().getId())
+                    .name(String.format("%s %s", order.getUser().getFirstName(), order.getUser().getLastName()))
+                    .orderDate(order.getOrderDate())
+                    .orderTotal(order.getOrderTotal())
+                    .orderId(order.getId())
+                    .orderStatus(order.getOrderStatus())
+                    .build();
+            orderListDTO.add(orderDTO);
+        }
+        model.addAttribute("orderList", orderListDTO);
+        return "orderShippingList";
+    }
+
+    @RequestMapping("/orderCompleteList")
+    public String getOrderCompleteList(Model model) {
+        List<Order> orderList = orderService.findByOrderStatusComplete();
+        List<OrderListDTO> orderListDTO = new ArrayList<>();
+        for (Order order: orderList) {
+            OrderListDTO orderDTO = OrderListDTO.builder()
+                    .userId(order.getUser().getId())
+                    .name(String.format("%s %s", order.getUser().getFirstName(), order.getUser().getLastName()))
+                    .orderDate(order.getOrderDate())
+                    .orderTotal(order.getOrderTotal())
+                    .orderId(order.getId())
+                    .orderStatus(order.getOrderStatus())
+                    .build();
+            orderListDTO.add(orderDTO);
+        }
+        model.addAttribute("orderList", orderListDTO);
+        return "orderCompleteList";
+    }
+
+    @RequestMapping("/orderCancelList")
+    public String getOrderCancelList(Model model) {
+        List<Order> orderList = orderService.findByOrderStatusCancel();
+        List<OrderListDTO> orderListDTO = new ArrayList<>();
+        for (Order order: orderList) {
+            OrderListDTO orderDTO = OrderListDTO.builder()
+                    .userId(order.getUser().getId())
+                    .name(String.format("%s %s", order.getUser().getFirstName(), order.getUser().getLastName()))
+                    .orderDate(order.getOrderDate())
+                    .orderTotal(order.getOrderTotal())
+                    .orderId(order.getId())
+                    .orderStatus(order.getOrderStatus())
+                    .build();
+            orderListDTO.add(orderDTO);
+        }
+        model.addAttribute("orderList", orderListDTO);
+        return "orderCancelList";
+    }
+
     @RequestMapping("/confirm")
     public String confirmOrder(@RequestParam("id") Long id, Principal principal) {
         User user = userService.findByUsername(principal.getName());
@@ -58,12 +116,42 @@ public class OrderController {
         return "redirect:/order/orderList";
     }
 
+    @RequestMapping("/ship")
+    public String confirmShipOrder(@RequestParam("id") Long id, Principal principal, Model model) {
+        User user = userService.findByUsername(principal.getName());
+        Order order = orderService.findById(id).get();
+        order.setOrderStatus("Đang giao");
+        order.setConfirmBy(user.getEmployee());
+        orderService.save(order);
+        List<Order> orderList = orderService.findByOrderStatusShipping();
+        List<OrderListDTO> orderListDTO = new ArrayList<>();
+        for (Order item: orderList) {
+            OrderListDTO orderDTO = OrderListDTO.builder()
+                    .userId(item.getUser().getId())
+                    .name(String.format("%s %s", item.getUser().getFirstName(), item.getUser().getLastName()))
+                    .orderDate(item.getOrderDate())
+                    .orderTotal(item.getOrderTotal())
+                    .orderId(item.getId())
+                    .orderStatus(item.getOrderStatus())
+                    .build();
+            orderListDTO.add(orderDTO);
+        }
+        model.addAttribute("orderList", orderListDTO);
+        return "orderShippingList";
+    }
+
     @RequestMapping("/cancel")
     public String cancelOrder(@RequestParam("id") Long id, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         Order order = orderService.findById(id).get();
         order.setOrderStatus("Đã hủy");
         orderService.save(order);
+        List<CartItem> cartItemList = order.getCartItemList();
+        for (CartItem cartItem : cartItemList) {
+            Book book = bookService.findById(cartItem.getBook().getId());
+            book.setInStockNumber(book.getInStockNumber() + cartItem.getQty());
+            bookService.save(book);
+        }
         return "redirect:/order/orderList";
     }
 }

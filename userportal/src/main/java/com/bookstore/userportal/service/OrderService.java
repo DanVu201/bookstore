@@ -12,4 +12,6 @@ public interface OrderService {
 					  User user);
 	
 	Order findById(Long id);
+
+	void save(Order order);
 }

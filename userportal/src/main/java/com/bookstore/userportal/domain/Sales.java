@@ -27,7 +27,7 @@ public class Sales {
     @Column(name = "year")
     private int year;
 
-    @Column(name = "category")
+    @Column(name = "category", columnDefinition = "nvarchar(255)")
     private String category;
 
 }
