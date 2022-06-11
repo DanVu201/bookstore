@@ -11,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class HomeController {
@@ -46,8 +43,10 @@ public class HomeController {
             month.add(list.get(i)[0]);
             quantity.add(list.get(i)[1]);
         }
+        int maxY = Collections.max(quantity);
         model.addAttribute("month", month);
         model.addAttribute("quantity", quantity);
+        model.addAttribute("maxQuantity", maxY);
         model.addAttribute("category", category);
         model.addAttribute("quantityCategory", quantityCategory);
         return "home";

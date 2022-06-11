@@ -68,8 +68,9 @@
 	<script th:inline="javascript">
 			var xValues =[[${month}]];
 			var yValues = [[${quantity}]];
+			var maxY = [[${maxY}]];
 
-			var barColors = ["green","green","green","green","green","green"];
+			var barColors = ["green","green","green","green","green","green","green","green","green","green","green","green"];
 
 			new Chart("myChart1", {
 				type: "bar",
@@ -87,7 +88,7 @@
 						text: "Doanh số hàng tháng"
 					},
 					scales: {
-						yAxes: [{ticks: {min: 10, max:200}}],
+						yAxes: [{ticks: {min: 0, max:1000}}],
 					}
 				}
 			});

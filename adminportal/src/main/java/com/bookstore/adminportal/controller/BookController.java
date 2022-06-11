@@ -184,8 +184,10 @@ public class BookController {
             month.add(list.get(i)[0]);
             quantity.add(list.get(i)[1]);
         }
+        int maxY = Collections.max(quantity);
         model.addAttribute("month", month);
         model.addAttribute("quantity", quantity);
+        model.addAttribute("maxQuantity", maxY);
         model.addAttribute("category", category);
         model.addAttribute("quantityCategory", quantityCategory);
         return "home";
