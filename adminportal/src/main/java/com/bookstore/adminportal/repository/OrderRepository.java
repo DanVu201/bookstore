@@ -20,5 +20,14 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 
     @Query(value = "SELECT uo.* FROM user_order uo WHERE uo.order_status = 'Đã hủy'", nativeQuery = true)
     List<Order> findByOrderStatusCancel();
+
+
+    @Query(value = "SELECT COUNT(o.id) FROM Order o WHERE o.orderStatus = :orderStatus AND MONTH(o.orderDate) = :month AND YEAR(o.orderDate) = :year")
+    Integer getNumberOfOrder(String orderStatus, Integer month, Integer year);
+
+    @Query(value = "SELECT o FROM Order o WHERE o.orderStatus = :orderStatus AND MONTH(o.orderDate) = :month AND YEAR(o.orderDate) = :year")
+    List<Order> findByOrderStatusAndOrderDate(String orderStatus, Integer month, Integer year);
+
+
     Optional<Order> findById(Long id);
 }

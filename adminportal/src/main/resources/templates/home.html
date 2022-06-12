@@ -6,127 +6,123 @@
 </head>
 
 <body>
-	<div th:replace="common/header :: navbar" />
-	
-	<div class="container" style="padding-top: 100px; padding-left: 180px;">
-		<div class="input_filter">
-			<form action="#" method="post" class="filter_form">
-				<div class="row">
-					<div class="col-md-4">
-						<label for="number">Tháng</label>
-						<input name="month" id="month_input" type="number" min="1" max="12" value="1">
-					</div>
-					<div class="col-md-4">
-						<label for="year">Năm</label>
-						<input name="year" id="year_input" type="number" min="2022" max="2100" value="2022">
-					</div>
-					<div class="col-md-4">
-						<button type="submit" name="filter" id="filter" class="btn btn-success">Thống kê</button>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="board_main">
-			<div class="row">
-				<div class="col-md-3 statistical">
-					<div class="box_color" id="orange"></div>
-					<div class="box_content">
-						<p class="box_title">Tồn kho</p>
-						<p class="box_value">300</p>
-					</div>
-				</div>
-				<div class="col-md-3 statistical">
-					<div class="box_color" id="blue"></div>
-					<div class="box_content">
-						<p class="box_title">Tồn kho</p>
-						<p class="box_value">300</p>
-					</div>
-				</div>
-				<div class="col-md-3 statistical">
-					<div class="box_color" id="red"></div>
-					<div class="box_content">
-						<p class="box_title">Tồn kho</p>
-						<p class="box_value">300</p>
-					</div>
-				</div>
-				<div class="col-md-3 statistical">
-					<div class="box_color" id="green"></div>
-					<div class="box_content">
-						<p class="box_title">Tồn kho</p>
-						<p class="box_value">300</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="sale">
+<div th:replace="common/header :: navbar"/>
 
-			<canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
-			<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+<div class="container" style="padding-top: 100px; padding-left: 180px;">
+    <div class="input_filter">
+        <form th:action="@{/statistics}" method="post" class="filter_form">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Tháng</label>
+                    <input name="month" id="month_input" type="number" min="1" max="12" th:value="${inputMonth}">
+                </div>
+                <div class="col-md-4">
+                    <label>Năm</label>
+                    <input name="year" id="year_input" type="number" min="2022" max="2100" th:value="${inputYear}">
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-success" name="filter" id="filter" type="submit">
+                        <a id="statistics" class="fa fa-times">Thống kê</a></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="board_main">
+        <div class="row">
+            <div class="col-md-3 statistical">
+                <div class="box_color" id="orange"></div>
+                <div class="box_content">
+                    <p class="box_title">Đơn hàng hoàn thành</p>
+                    <p class="box_value" th:text="${numberOfOrderComplete}"></p>
+                </div>
+            </div>
+            <div class="col-md-3 statistical">
+                <div class="box_color" id="blue"></div>
+                <div class="box_content">
+                    <p class="box_title">Đơn hàng đã hủy</p>
+                    <p class="box_value" th:text="${numberOfOrderCancel}"></p>
+                </div>
+            </div>
+            <div class="col-md-3 statistical">
+                <div class="box_color" id="red"></div>
+                <div class="box_content">
+                    <p class="box_title">Lợi nhuận tháng</p>
+                    <p class="box_value" th:text="${revenue}"></p>
+                </div>
+            </div>
+<!--            <div class="col-md-3 statistical">-->
+<!--                <div class="box_color" id="green"></div>-->
+<!--                <div class="box_content">-->
+<!--                    <p class="box_title">Tồn kho</p>-->
+<!--                    <p class="box_value">300</p>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </div>
+    <div class="sale">
 
-		</div>
-	</div>
-	<script th:inline="javascript">
-			var xValues =[[${month}]];
-			var yValues = [[${quantity}]];
-			var maxY = [[${maxY}]];
+        <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+        <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
 
-			var barColors = ["green","green","green","green","green","green","green","green","green","green","green","green"];
+    </div>
+</div>
+<script th:inline="javascript">
+    var xValues = [[${month}]];
+    var yValues = [[${quantity}]];
+    var maxY = [[${maxY}]];
 
-			new Chart("myChart1", {
-				type: "bar",
-				data: {
-					labels: xValues,
-					datasets: [{
-						backgroundColor: barColors,
-						data: yValues
-					}]
-				},
-				options: {
-					legend: {display: false},
-					title: {
-						display: true,
-						text: "Doanh số hàng tháng"
-					},
-					scales: {
-						yAxes: [{ticks: {min: 0, max:1000}}],
-					}
-				}
-			});
-	</script>
+    var barColors = ["green", "green", "green", "green", "green", "green", "green", "green", "green", "green", "green", "green"];
 
-	<script th:inline="javascript">
-			var xValues =[[${category}]];
-			var yValues = [[${quantityCategory}]];
-			var barColors = [
-				"#b91d47",
-				"#00aba9",
-				"#2b5797",
-				"#e8c3b9",
-				"#1e7145"
-			];
+    new Chart("myChart1", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+                display: true,
+                text: "Doanh số hàng tháng"
+            },
+            scales: {
+                yAxes: [{ticks: {min: 0, max: 1000}}],
+            }
+        }
+    });
+</script>
 
-			new Chart("myChart2", {
-				type: "pie",
-				data: {
-					labels: xValues,
-					datasets: [{
-						backgroundColor: barColors,
-						data: yValues
-					}]
-				},
-				options: {
-					title: {
-						display: true,
-						text: "Thống kê tỉ lệ thể loại sách bán ra 2022"
-					}
-				}
-			});
-	</script>
+<script th:inline="javascript">
+    var xValues = [[${category}]];
+    var yValues = [[${quantityCategory}]];
+    var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+    ];
 
-
-
-
-
-	<div th:replace="common/header :: body-bottom-scripts" />
+    new Chart("myChart2", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Thống kê tỉ lệ thể loại sách bán ra 2022"
+            }
+        }
+    });
+</script>
+<div th:replace="common/header :: body-bottom-scripts"/>
 </body>
 </html>

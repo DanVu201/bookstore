@@ -16,4 +16,9 @@ public class CouponImportServiceImpl implements CouponImportService {
     public void save(CouponImport couponImport) {
         couponImportRepository.save(couponImport);
     }
+
+    @Override
+    public Integer getTotalPriceCouponImport(Integer month, Integer year) {
+        return couponImportRepository.getTotalPriceCouponImport(month, year);
+    }
 }

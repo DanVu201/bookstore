@@ -15,6 +15,10 @@ public interface OrderService {
 
     List<Order> findByOrderStatusCancel();
 
+    Integer getNumberOfOrder(String orderStatus, Integer month, Integer year);
+
+    List<Order> findByOrderStatusAndOrderDate(String orderStatus, Integer month, Integer year);
+
     Optional<Order> findById(Long id);
 
     void save(Order order);

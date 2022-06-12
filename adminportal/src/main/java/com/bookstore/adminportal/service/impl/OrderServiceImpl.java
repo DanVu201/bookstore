@@ -37,6 +37,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Integer getNumberOfOrder(String orderStatus, Integer month, Integer year) {
+        return orderRepository.getNumberOfOrder(orderStatus, month, year);
+    }
+
+    @Override
+    public List<Order> findByOrderStatusAndOrderDate(String orderStatus, Integer month, Integer year) {
+        return orderRepository.findByOrderStatusAndOrderDate(orderStatus, month, year);
+    }
+
+    @Override
     public Optional<Order> findById(Long id) {
         return orderRepository.findById(id);
     }

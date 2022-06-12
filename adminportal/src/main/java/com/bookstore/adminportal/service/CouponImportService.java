@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 public interface CouponImportService {
 
     void save(CouponImport couponImport);
+
+    Integer getTotalPriceCouponImport(Integer month, Integer year);
 }
